@@ -1,0 +1,30 @@
+  <div class="post col-md-12">
+    <%= form_for post, html: { class: 'post-form'} do |f| %>
+      <div class="form-group">
+        VS <%= f.text_field :opponent, class:"form-control" %>
+      </div>
+      <div class="form-group">
+        <p>＜結果＞</p>
+        　<%= f.radio_button :result, :'Win'%>
+        <%= f.label :result, "Win", {value: :'Win'}%>
+        　<%= f.radio_button :result, :'Lose'%>
+        <%= f.label :result, "Lose", {value: :'Lose'} %>
+        　<%= f.radio_button :result, :'Drow'%>
+        <%= f.label :result, "Drow", {value: :'Drow'} %>
+      </div>
+      <div class="form-group">
+        <p>＜スコア＞</p>
+        　得点 <%= f.number_field :goal, min:0, max:20 %>
+        　　失点 <%= f.number_field :allow, min:0, max:20 %>
+      </div>
+      <div class="form-group">
+        <p>＜得点者＞</p>
+        <%= f.text_area :scorer, class:"form-control" %>
+      </div>
+      <div class="form-group">
+        <p>＜戦評＞</p>
+        <%= f.text_area :commentary, class:"form-control", rows: 10 %>
+      </div>
+      <%= f.submit "投稿する", class: "btn btn-success" %>
+    <% end %>
+  </div>
