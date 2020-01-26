@@ -1,0 +1,53 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.row{
+  padding-left:  155px;
+}
+
+.posts{
+  margin: 5px;
+  border: solid 1px;
+}
+
+h1{
+  margin-bottom: 5%;
+}
+
+.date{
+  font-size: 20px;
+}
+
+.opponent{
+  font-size: xx-large;
+}
+
+.result{
+  font-size: xx-large;
+  padding-bottom: 10px;
+}
+
+.scorer{
+  font-size: large;
+}
+
+.commentary{
+  font-size: large;
+}
+
+a{
+}
+
+.post-form{
+  padding: 5px;
+  font-size: medium;
+}
+
+.form-group--rb{
+    padding-right: 5px;
+  }
+
+  .field_with_errors {
+    display: inline;
+  }
