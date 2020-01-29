@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_27_094153) do
+ActiveRecord::Schema.define(version: 2020_01_29_013510) do
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "opponent", null: false
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2020_01_27_094153) do
     t.text "commentary"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "team_id"
+    t.index ["team_id"], name: "index_posts_on_team_id"
   end
 
   create_table "teams", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -37,4 +39,5 @@ ActiveRecord::Schema.define(version: 2020_01_27_094153) do
     t.index ["reset_password_token"], name: "index_teams_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "posts", "teams"
 end

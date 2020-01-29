@@ -7,4 +7,5 @@ class Team < ApplicationRecord
   validates :representative, presence: true
   validates :team_name, presence: true
 
+  has_many :posts
 end

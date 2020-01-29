@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.order(created_at: :desc)
+    @posts = Post.order(created_at: :desc).includes(:team)
   end
 
   def show
@@ -48,7 +48,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:opponent,:result,:goal,:allow,:scorer,:commentary)
+    params.require(:post).permit(:opponent,:result,:goal,:allow,:scorer,:commentary).merge(team_id: current_team.id)
   end
 end
 
