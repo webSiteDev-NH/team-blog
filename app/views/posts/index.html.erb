@@ -1,16 +1,17 @@
-<div class="container">
-<div class="row">
+<div class="container ">
+<div class="row　text-center">
   <% @posts.each do |post| %>
     <%= link_to post do %>
-      <div class="posts col-md-5">
+      <div class="posts col-md-12">
         <p class="date"><%= post.created_at.strftime('%Y/%m/%d')%></p>
-        <p class="opponent">vs <%= post.opponent %></p>
-        <div class="result">
-          <%= post.result %>　　<%= post.goal%> - <%= post.allow%>
+        <p class="opponent text-center">vs <%= post.opponent %></p>
+        <div class="result text-right">
+          <%= post.result %>
+          　<%= post.goal%> - <%= post.allow%>
         </div>
       </div>
     <% end %>
   <% end %>
   </div>
-  <%= link_to "新規投稿", new_post_path, class: "btn btn-primary", style:"margin:5px 0 0 145px;"%>
+  <%= link_to "新規投稿", new_post_path, class: "btn btn-primary" %>
 </div>

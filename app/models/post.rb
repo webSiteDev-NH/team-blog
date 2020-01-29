@@ -3,4 +3,5 @@ class Post < ApplicationRecord
   validates :result, presence: true
   validates :goal, presence: true
   validates :allow, presence: true
+
 end
