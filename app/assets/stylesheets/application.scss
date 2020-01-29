@@ -1,9 +1,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'posts';
+@import 'teams';
 
 body{
-  background-color: aquamarine;
+  background-image: image-url('3e2aa33ca73f180999d8b41dd74775f7_w.jpg');
+  background-size: cover;
 }
 
 .alert{

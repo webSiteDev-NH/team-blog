@@ -1,4 +1,11 @@
-<div class="container text-center">
+<div class="row text-center">
   <h1><%= @team.team_name %></h1>
-  <p>代表作：<%= @team.representative %></p>
+  <p style="font-size: 25px;">代表者：<%= @team.representative %></p>
+  <div class="list" style="font-size: 30px;">
+    <%= link_to "選手一覧", root_path %>
+
+    <%# 投稿一覧でチーム別で表示したい %>
+    <%= link_to "投稿一覧", posts_path%>
+    
+  </div>
 </div>
