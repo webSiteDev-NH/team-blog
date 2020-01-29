@@ -1,0 +1,30 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <% if team_signed_in? %>
+        <a class="navbar-brand" href="/">チーム名：<%= current_team.team_name %></a>
+       <% else %>
+        <a class="navbar-brand" href="/">フットサルブログ</a>
+       <% end %>
+    </div>
+    <% if team_signed_in? %>
+    <div class="collapse navbar-collapse" id="navigation">
+      <p class="navbar-text navbar-right"><%= link_to "ログアウト", destroy_team_session_path, method: :delete %></p>
+      <p class="navbar-text navbar-right"><%= link_to "チーム情報", team_path(current_team) %></p>
+      <p class="navbar-text navbar-right"><%= link_to "新規投稿", new_post_path %></p>
+      <p class="navbar-text navbar-right"><%= link_to "TOPページ", root_path %></p>
+    </div>
+    <% else %>
+    <div class="collapse navbar-collapse" id="navigation">
+      <p class="navbar-text navbar-right"><%= link_to "チーム情報", root_path %></p>
+      <p class="navbar-text navbar-right"><%= link_to "チーム登録", new_team_registration_path %></p>
+      <p class="navbar-text navbar-right"><%= link_to "ログイン",  new_team_session_path %></p>
+    </div>
+    <% end %>
+  </div>
+</nav>
