@@ -4,4 +4,5 @@ class Post < ApplicationRecord
   validates :goal, presence: true
   validates :allow, presence: true
 
+  belongs_to :team
 end

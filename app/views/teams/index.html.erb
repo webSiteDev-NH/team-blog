@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">  
+    <h2 class="text-center">チーム一覧</h2>
+    <div class="teams-list">
+      <% @teams.each do |team| %>
+        <p class="text-center"><%=link_to team.team_name, team_path(team) %></p>
+      <% end %>
+    </div>
+    <div class="text-center">
+    <%= link_to "戻る", root_path, class: "btn btn-default"%>
+    </div>
+  </div>
+</div>
