@@ -1,6 +1,9 @@
   <div class="col-md-6 col-md-offset-3">
     <%= form_for post, html: { class: 'post-form'} do |f| %>
       <div class="form-group">
+        <%= f.collection_select(:cotegory_id, @cotegory, :id, :name, {prompt: "カテゴリーを選択してください"}) %>
+      </div>
+      <div class="form-group">
         VS <%= f.text_field :opponent, class:"form-control" %>
       </div>
       <div class="form-group">

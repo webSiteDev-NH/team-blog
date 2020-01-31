@@ -5,4 +5,5 @@ class Post < ApplicationRecord
   validates :allow, presence: true
 
   belongs_to :team
+  belongs_to :category
 end

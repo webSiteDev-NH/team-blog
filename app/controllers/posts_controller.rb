@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
   before_action :find_post, only: [:show, :edit, :update, :destroy]
+  before_action :select_category, only: [:new, :create, :edit, :update]
 
   def index
     @posts = Post.order(created_at: :desc).includes(:team).page(params[:page]).per(5)
@@ -47,8 +48,12 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def select_category
+    @category = Category.all
+  end
+
   def post_params
-    params.require(:post).permit(:opponent,:result,:goal,:allow,:scorer,:commentary).merge(team_id: current_team.id)
+    params.require(:post).permit(:opponent,:result,:goal,:allow,:scorer,:commentary, :category_id).merge(team_id: current_team.id)
   end
 end
 
