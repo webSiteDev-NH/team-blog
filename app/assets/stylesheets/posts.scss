@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.row{
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
 .pagination>li>a {
   border: none;
   color: #696969; 

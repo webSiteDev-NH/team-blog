@@ -7,19 +7,18 @@
   font-size: large;
 }
 
-.list{
-  margin: 30px auto;
-  width: 60%;
-  display: flex;
-  justify-content: space-between;
+.row{
+  margin-right: 50px;
+  margin-left: 50px;
+}
 
-  &--player{
-    font-size: 30px;
-    padding: 65px 80px;
-  }
+.player-list{
+  font-size: 40px;
+  margin: 20px;
+  text-align: center;
+}
 
-  &--posts{
-    font-size: 30px;
-    padding: 65px 80px;
-  }
+.team-posts{
+  font-size: 30px;
+  text-align: center;
 }
