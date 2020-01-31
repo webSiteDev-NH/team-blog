@@ -1,11 +1,16 @@
 <div class="row text-center">
   <h1><%= @team.team_name %></h1>
   <p style="font-size: 25px;">代表者：<%= @team.representative %></p>
+  <% if team_signed_in? %>
+    <%= link_to "編集", edit_team_registration_path, class: "btn btn-warning "%>
+    <%= link_to "削除", team_registration_path, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class:"btn btn-danger"%>
+  <% else %>
+  <% end %>
   <div class="list" style="font-size: 30px;">
-    <%= link_to "選手一覧", root_path %>
+    <%= link_to "選手一覧", root_path, class:"list--player btn btn-success"%>
 
     <%# 投稿一覧でチーム別で表示したい %>
-    <%= link_to "投稿一覧", posts_path%>
-    
+    <%= link_to "結果一覧", root_path, class:"list--posts btn btn-primary"%>
   </div>
+  <%= link_to "戻る", root_path, class: "btn btn-default "%>
 </div>

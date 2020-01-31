@@ -6,3 +6,20 @@
   margin-top: 20px;
   font-size: large;
 }
+
+.list{
+  margin: 30px auto;
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+
+  &--player{
+    font-size: 30px;
+    padding: 65px 80px;
+  }
+
+  &--posts{
+    font-size: 30px;
+    padding: 65px 80px;
+  }
+}
