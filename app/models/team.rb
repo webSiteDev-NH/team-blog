@@ -8,4 +8,5 @@ class Team < ApplicationRecord
   validates :team_name, presence: true
 
   has_many :posts, dependent: :destroy
+  has_many :players
 end

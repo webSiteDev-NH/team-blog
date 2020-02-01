@@ -10,12 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_31_172744) do
+ActiveRecord::Schema.define(version: 2020_02_01_090226) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "players", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "number"
+    t.string "position"
+    t.string "name", null: false
+    t.date "birthday"
+    t.integer "height"
+    t.integer "weight"
+    t.integer "goals"
+    t.string "play_style"
+    t.string "image"
+    t.bigint "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_players_on_team_id"
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -48,6 +64,7 @@ ActiveRecord::Schema.define(version: 2020_01_31_172744) do
     t.index ["reset_password_token"], name: "index_teams_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "players", "teams"
   add_foreign_key "posts", "categories"
   add_foreign_key "posts", "teams"
 end
