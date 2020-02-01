@@ -6,7 +6,35 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
-    @posts = Post.order(created_at: :desc).page(params[:page]).per(5)
+    @posts = @team.posts.page(params[:page]).per(5).order(game_date: :desc)
+    # 全試合
+    @total_game = Post.where(team_id: @team)
+    @total_win = Post.where(result: "Win", team_id: @team)
+    @total_lose = Post.where(result: "Lose", team_id: @team)
+    @total_drow = Post.where(result: "Drow", team_id: @team)
+    @total_goal = Post.where(team_id: @team).sum(:goal)
+    @total_allow = Post.where(team_id: @team).sum(:allow)
+    # リーグ戦
+    @league = Post.where(team_id: @team, category_id: 1)
+    @league_win = Post.where(team_id: @team, category_id: 1, result: "Win")
+    @league_lose = Post.where(team_id: @team, category_id: 1, result: "Lose")
+    @league_drow = Post.where(team_id: @team, category_id: 1, result: "Drow")
+    @league_goal = Post.where(team_id: @team, category_id: 1).sum(:goal)
+    @league_allow = Post.where(team_id: @team, category_id: 1).sum(:allow)
+    # カップ戦
+    @cup = Post.where(team_id: @team, category_id: 2)
+    @cup_win = Post.where(team_id: @team, category_id: 2, result: "Win")
+    @cup_lose = Post.where(team_id: @team, category_id: 2, result: "Lose")
+    @cup_drow = Post.where(team_id: @team, category_id: 2, result: "Drow")
+    @cup_goal = Post.where(team_id: @team, category_id: 2).sum(:goal)
+    @cup_allow = Post.where(team_id: @team, category_id: 2).sum(:allow)
+    # 練習試合
+    @practice = Post.where(team_id: @team, category_id: 3)
+    @practice_win = Post.where(team_id: @team, category_id: 3, result: "Win")
+    @practice_lose = Post.where(team_id: @team, category_id: 3, result: "Lose")
+    @practice_drow = Post.where(team_id: @team, category_id: 3, result: "Drow")
+    @practice_goal = Post.where(team_id: @team, category_id: 3).sum(:goal)
+    @practice_allow = Post.where(team_id: @team, category_id: 3).sum(:allow)
   end
 
 end

@@ -15,7 +15,7 @@
     <% if team_signed_in? %>
     <div class="collapse navbar-collapse" id="navigation">
       <p class="navbar-text navbar-right"><%= link_to "ログアウト", destroy_team_session_path, method: :delete %></p>
-      <p class="navbar-text navbar-right"><%= link_to "チーム情報", team_path(current_team) %></p>
+      <p class="navbar-text navbar-right"><%= link_to "マイチーム", team_path(current_team) %></p>
       <p class="navbar-text navbar-right"><%= link_to "試合結果投稿", new_post_path %></p>
     </div>
     <% else %>

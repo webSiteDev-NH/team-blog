@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_31_170931) do
+ActiveRecord::Schema.define(version: 2020_01_31_172744) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_01_31_170931) do
     t.integer "allow"
     t.text "scorer"
     t.text "commentary"
+    t.date "game_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "team_id"
