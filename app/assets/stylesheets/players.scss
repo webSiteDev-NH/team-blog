@@ -1,0 +1,29 @@
+// Place all the styles related to the players controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.player-show{
+  border: medium groove silver;
+  background-color: whitesmoke;
+}
+
+.plytop-mgb{
+  margin-bottom: 10px;
+}
+
+.plyunder-mgt{
+  margin-top: 10px;
+}
+
+.player-img{
+  margin: 20px 0;
+}
+
+.fa-file-picture-o:before{
+  font-size: 30px;
+  color: darkred;
+}
+
+.player-form{
+  font-weight: bold;
+}

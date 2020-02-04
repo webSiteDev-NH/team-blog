@@ -1,28 +1,28 @@
-<div class="container">
-  <h1 class="text-center">チーム名ブログ</h1>
-    <div class="posts col-md-12" >
-      <p class="date">試合日：<%= @post.game_date.strftime('%Y/%m/%d')%></p>
-      <p class="opponent">vs <%= @post.opponent %></p>
-      <div class="result">
-        <%= @post.result %> <%= @post.goal %> - <%= @post.allow %>
-      </div>
-      <p class="scorer">得点者：<%= @post.scorer %></p>
-      <p class="commentary">
+<div class="row">
+  <h1 class="text-center"><%= @post.team.team_name %></h1>
+  <div class="post col-md-10 col-md-offset-1" >
+    <p class="date">試合日：<%= @post.game_date.strftime('%Y/%m/%d')%></p>
+    <p class="opponent text-center">vs <%= @post.opponent %></p>
+    <div class="result text-right">
+      <%= @post.result %> <%= @post.goal %> - <%= @post.allow %>
+    </div>
+    <p class="scorer">＜得点者＞<br>
+    <%= @post.scorer %></p>
+    <p class="commentary">
       ＜戦評＞<br>
       <%= simple_format @post.commentary %>
-      </p>
-    </div>
+    </p>
+  </div>
+
+  <div class="col-md-10 col-md-offset-1 text-center">
     <% if team_signed_in? %>
-    <div class="text-right">
-      <%= link_to "編集", edit_post_path, class: "btn btn-primary", style: "margin-left: 5px;"%>
+      <%= link_to "編集", edit_post_path, class: "btn btn-warning", style: "margin-left: 5px;"%>
       <%= link_to "削除", post_path, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class:"btn btn-danger"%>
       <%= link_to "TOPページ", root_path, class: "btn btn-default"%>
       <%= link_to "マイチーム", team_path(@post.team), class: "btn btn-info"%>
-    </div>
     <% else %>
-    <div class="text-right">
       <%= link_to "TOPページ", root_path, class: "btn btn-default"%>
-      <%= link_to "チーム情報", team_path(@post.team), class: "btn btn-info"%>
-    </div>
+      <%= link_to "#{@post.team.team_name}情報", team_path(@post.team), class: "btn btn-info"%>
     <% end %>
+  </div>
 </div>

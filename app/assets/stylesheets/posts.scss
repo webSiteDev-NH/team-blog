@@ -2,11 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.row{
-  margin-right: 50px;
-  margin-left: 50px;
-}
-
 .pagination>li>a {
   border: none;
   color: #696969; 
@@ -26,11 +21,13 @@
 .posts{
   background-color: mintcream;
   border: solid 3px;
-  margin: 20px 0;
+  margin: 20px 40px 0;
 }
 
-h1{
-  margin-bottom: 5%;
+.post{
+  background-color: mintcream;
+  border: solid 3px;
+  margin-bottom: 10px;
 }
 
 .date{
@@ -48,6 +45,7 @@ h1{
 
 .scorer{
   font-size: large;
+  margin-bottom: 15px;
 }
 
 .commentary{
@@ -55,7 +53,6 @@ h1{
 }
 
 .post-form{
-  padding: 5px;
   font-size: medium;
 }
 
@@ -65,4 +62,16 @@ h1{
 
   .field_with_errors {
     display: inline;
+  }
+
+  .win{
+    color:red;
+  }
+
+  .lose{
+    color: blue;
+  }
+
+  .drow{
+    color: gray;
   }

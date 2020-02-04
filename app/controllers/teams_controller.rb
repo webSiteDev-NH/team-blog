@@ -6,6 +6,9 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
+    # 選手を背番号順に表示
+    @players = @team.players.order(number: :asc)
+    # 試合結果投稿を試合日順に表示
     @posts = @team.posts.page(params[:page]).per(5).order(game_date: :desc)
     # 全試合
     @total_game = Post.where(team_id: @team)
@@ -35,6 +38,11 @@ class TeamsController < ApplicationController
     @practice_drow = Post.where(team_id: @team, category_id: 3, result: "Drow")
     @practice_goal = Post.where(team_id: @team, category_id: 3).sum(:goal)
     @practice_allow = Post.where(team_id: @team, category_id: 3).sum(:allow)
+  end
+
+  def affiliation
+    @team = Team.find(params[:id])
+    @players = @team.players.order(number: :asc)
   end
 
 end
