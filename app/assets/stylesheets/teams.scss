@@ -2,27 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.mgr-10{
-  margin-right: 10px;
-}
-
-.mgr-40{
-  margin-right: 40px;
-}
 .teams-list{
   margin-top: 20px;
   font-size: large;
-}
-
-.row{
-  margin-right: 50px;
-  margin-left: 50px;
-}
-
-.player-list{
-  font-size: 40px;
-  margin: 20px;
-  text-align: center;
 }
 
 .team-posts{
@@ -44,4 +26,30 @@
 
 .categories{
   font-size: 25px;
+}
+
+.players{
+  margin-top: 15px;
+  font-size:xx-large;
+}
+
+.players-list{
+font-size: large;
+}
+
+.card-header{
+  font-size: 25px;
+  background-color: lightgray;
+}
+
+.num-mgl{
+  margin-left: 12px;
+}
+
+.pst-mgl{
+  margin-left: 4px;
+}
+
+.name-mgl{
+  margin-left: 142px;
 }

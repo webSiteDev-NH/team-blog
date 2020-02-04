@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
 @import 'posts';
 @import 'teams';
 
@@ -12,6 +13,31 @@ body{
   text-align: center;
 }
 
+.row{
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
 h1{
   margin-bottom: 2%;
+}
+
+.mgl-20{
+  margin-left: 20px;
+}
+
+.mgl-40{
+  margin-left: 40px;
+}
+
+.mgl-90{
+  margin-left: 90px;
+}
+
+.mgr-10{
+  margin-right: 10px;
+}
+
+.mgr-40{
+  margin-right: 40px;
 }

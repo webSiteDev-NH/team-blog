@@ -1,40 +1,50 @@
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for post, html: { class: 'post-form'} do |f| %>
-      <div class="form-group">
-          <%= f.label :game_date, "試合日(年/月/日)" %><br>
-          <%= f.date_select :game_date,{use_month_numbers: true, date_separator:'/'} %>
-      </div>
-      <div class="form-group">
-        <%= f.collection_select(:category_id, @category, :id, :name, {prompt: "カテゴリーを選択してください"}) %>
-      </div>
-      <div class="form-group">
-        VS <%= f.text_field :opponent, class:"form-control" %>
-      </div>
-      <div class="form-group">
-        <p>＜結果＞</p>
-        　<%= f.radio_button :result, :'Win'%>
-        <%= f.label :result, "Win", {value: :'Win'}%>
-        　<%= f.radio_button :result, :'Lose'%>
-        <%= f.label :result, "Lose", {value: :'Lose'} %>
-        　<%= f.radio_button :result, :'Drow'%>
-        <%= f.label :result, "Drow", {value: :'Drow'} %>
-      </div>
-      <div class="form-group">
-        <p>＜スコア＞</p>
-        　得点 <%= f.number_field :goal, min:0, max:20 %>
-        　ー　<%= f.number_field :allow, min:0, max:20 %>失点
-      </div>
-      <div class="form-group">
-        <p>＜得点者＞</p>
-        <%= f.text_area :scorer, class:"form-control" %>
-      </div>
-      <div class="form-group">
-        <p>＜戦評＞</p>
-        <%= f.text_area :commentary, class:"form-control", rows: 10 %>
-      </div>
-      <div class="text-center">
-        <%= f.submit "投稿する", class: "btn btn-info" %>
-        <%= link_to "戻る", root_path, class: "btn btn-default"%>
-      </div>
-    <% end %>
- </div>
+<div class="col-md-6 col-md-offset-3">
+  <%= form_for post, html: { class: 'post-form'} do |f| %>
+
+    <div class="form-group">
+      <%= f.label :game_date, "試合日(年/月/日)" %><br>
+      <%= f.date_select :game_date,{use_month_numbers: true, date_separator:'/'} %>
+    </div>
+
+    <div class="form-group">
+      <%= f.collection_select(:category_id, @category, :id, :name, {prompt: "カテゴリーを選択してください"}) %>
+    </div>
+
+    <div class="form-group">
+      VS <%= f.text_field :opponent, class:"form-control" %>
+    </div>
+
+    <div class="form-group">
+      <p>＜結果＞</p>
+      <span class="mgl-20"><%= f.radio_button :result, :'Win'%></span>
+      <%= f.label :result, "Win", {value: :'Win', class:"win"} %>
+      <span class="mgl-20"><%= f.radio_button :result, :'Lose'%></span>
+      <%= f.label :result, "Lose", {value: :'Lose', class:"lose"} %>
+      <span class="mgl-20"><%= f.radio_button :result, :'Drow'%></span>
+      <%= f.label :result, "Drow", {value: :'Drow', class:"drow"} %>
+    </div>
+
+    <div class="form-group">
+      <p>＜スコア＞</p>
+      <span class="mgl-20">得点 <%= f.number_field :goal, min:0, max:20 %></span>
+      <span class="mgl-20">ー</span>
+      <span class="mgl-20"><%= f.number_field :allow, min:0, max:20 %>失点</span>
+    </div>
+
+    <div class="form-group">
+      <p>＜得点者＞</p>
+      <%= f.text_area :scorer, class:"form-control" %>
+    </div>
+    
+    <div class="form-group">
+      <p>＜戦評＞</p>
+      <%= f.text_area :commentary, class:"form-control", rows: 8 %>
+    </div>
+
+    <div class="text-center">
+      <%= f.submit "投稿する", class: "btn btn-info" %>
+      <%= link_to "戻る", root_path, class: "btn btn-default"%>
+    </div>
+    
+  <% end %>
+</div>

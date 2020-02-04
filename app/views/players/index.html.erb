@@ -1,3 +1,13 @@
-<h1>チーム名</h1>
+<h1></h1>
+<div class="container text-center">
 <p>選手一覧</p>
+<% @players.each do |player|%>
+<%= link_to player do%>
+<%= player.number %>
+<%= player.position %>
+<%= player.name%><br>
+<% end %>
+<% end %>
+</div>
 <%= link_to "選手登録", new_player_path%>
+

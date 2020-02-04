@@ -1,19 +1,18 @@
-<div class="container ">
-  <div class="row">
+<div class="row">
   <div class="team-posts">＜結果一覧＞</div>
-    <% @posts.each do |post| %>
-      <%= link_to post do %>
-        <div class="posts col-md-12">
-          <p class="date">試合日：<%= post.game_date.strftime('%Y/%m/%d')%></p>
-          <p class="categories"><%= post.category.name%>
-          <p class="opponent text-center"><%= post.team.team_name %>　vs　<%= post.opponent %></p>
-          <div class="result text-right">
-            <%= post.result %>
-            　<%= post.goal%> - <%= post.allow%>
-          </div>
+  <% @posts.each do |post| %>
+    <%= link_to post do %>
+      <div class="posts col-md-11">
+        <p class="date">試合日：<%= post.game_date.strftime('%Y/%m/%d')%></p>
+        <p class="categories"><%= post.category.name%>
+        <p class="opponent text-center"><%= post.team.team_name %>　vs　<%= post.opponent %></p>
+        <div class="result text-right">
+          <%= post.result %>
+          <span class="mgl-20"><%= post.goal%> - <%= post.allow%></span>
         </div>
-      <% end %>
+      </div>
     <% end %>
-    <%= paginate(@posts) %>
-  </div>
+  <% end %>
+  <span class="mgl-40"><%= paginate(@posts)%></span>
 </div>
+
