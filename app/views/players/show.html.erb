@@ -1,15 +1,23 @@
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-
+  <h1 class="text-center"><%= @player.team.team_name%></h1>
+  <div class="col-md-6 col-md-offset-3 text-center plytop-mgb">
     <% if team_signed_in? %>
-      <div class="text-center">
         <%= link_to "編集", edit_player_path, class:"btn btn-warning"%>
         <%= link_to "削除", player_path, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class:"btn btn-danger" %>
-      </div>
     <% else %>
     <% end %>
+  </div>
 
+  <div class="player-show col-md-6 col-md-offset-3">
     <h1 class="text-center"><%= @player.name %></h1>
+      <div class="player-img text-center">
+        <% if @player.image? %>
+          <%#= image_tag @player.image.url %>
+          <%= image_tag @player.image.thumb.url %>
+        <% else %>
+          <%= image_tag "/assets/118999s.jpg", :size => '150x150' %>
+        <% end %>
+      </div>
     <table class="table" style="table-layout:fixed">
       <tbody>
         <tr>
@@ -26,29 +34,29 @@
         </tr>
         <tr>
           <td>身長</td>
-          <td><%= @player.height %></td>
+          <td><%= @player.height %>cm</td>
         </tr>
         <tr>
           <td>体重</td>
-          <td><%= @player.weight %></td>
+          <td><%= @player.weight %>kg</td>
         </tr>
         <tr>
           <td>プレースタイル</td>
           <td><%= simple_format @player.play_style %></td>
         </tr>
           <td>ゴール数</td>
-          <td><%= @player.goals %></td>
+          <td><%= @player.goals %>点</td>
         </tr>
       </tbody>
     </table>
-
-    <div class="text-center">
-      <% if team_signed_in? %>
-        <%= link_to "戻る", affiliation_team_path,class:"btn btn-default" %>
-      <% else %>
-
-      <% end %>
-    </div>
-
   </div>
+
+  <div class="col-md-6 col-md-offset-3 text-center plyunder-mgt">
+    <% if team_signed_in? %>
+      <%= link_to "戻る", affiliation_team_path(@player.team),class:"btn btn-default" %>
+    <% else %>
+      <%= link_to "戻る", affiliation_team_path(@player.team), class:"btn btn-default" %>
+    <% end %>
+  </div>
+
 </div>
