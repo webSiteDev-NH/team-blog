@@ -2,10 +2,9 @@
   <div class="team-info text-center">
     <h1><%= @team.team_name %></h1>
     <p style="font-size: 25px;">代表者：<%= @team.representative %></p>
-    <% if team_signed_in? %>
+    <% if team_signed_in? && current_team.id == @team.id %>
       <%= link_to "チーム編集", edit_team_registration_path, class: "btn btn-warning "%>
       <%= link_to "チーム削除", team_registration_path, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class:"btn btn-danger"%>
-    <% else %>
     <% end %>
 
     <div class="total-record">
@@ -42,7 +41,8 @@
   </div>
 
     <div class="players text-center">
-      <%= link_to "選手一覧", affiliation_team_path %>
+      <%= link_to "選手一覧", affiliation_team_path %><br>
+      <%= link_to "戻る", root_path, class:"btn btn-default"%>
     </div>
       
     <div class="team-posts">＜結果一覧＞</div>

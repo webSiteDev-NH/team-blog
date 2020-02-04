@@ -1,6 +1,8 @@
 class PlayersController < ApplicationController
 
   before_action :player_find, only: [:show, :edit, :update, :destroy]
+  before_action :return_top_page, except: [:index, :show]
+
 
   def index
     @players = Player.all.includes(:team)
@@ -53,6 +55,10 @@ class PlayersController < ApplicationController
 
   def profile_params
     params.require(:player).permit(:name, :number, :position, :birthday, :height, :weight, :goals, :play_style, :image).merge(team_id: current_team.id)
+  end
+
+  def return_top_page
+    redirect_to controller: 'posts', action: :index unless team_signed_in?
   end
 
 end

@@ -2,6 +2,8 @@ class PostsController < ApplicationController
 
   before_action :find_post, only: [:show, :edit, :update, :destroy]
   before_action :select_category, only: [:new, :create, :edit, :update]
+  before_action :return_top_page, except: [:index, :show]
+
 
   def index
     @posts = Post.order(game_date: :desc).includes(:team).page(params[:page]).per(5)
@@ -55,6 +57,11 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:opponent,:result,:goal,:allow,:scorer,:commentary, :game_date, :category_id).merge(team_id: current_team.id)
   end
+
+  def return_top_page
+    redirect_to action: :index unless team_signed_in?
+  end
+
 end
 
 #データベース(カラム名)

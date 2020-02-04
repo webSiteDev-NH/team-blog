@@ -18,10 +18,10 @@
     <% if team_signed_in? %>
       <%= link_to "編集", edit_post_path, class: "btn btn-warning", style: "margin-left: 5px;"%>
       <%= link_to "削除", post_path, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class:"btn btn-danger"%>
-      <%= link_to "TOPページ", root_path, class: "btn btn-default"%>
+      <%= link_to "戻る", root_path, class: "btn btn-default"%>
       <%= link_to "マイチーム", team_path(@post.team), class: "btn btn-info"%>
     <% else %>
-      <%= link_to "TOPページ", root_path, class: "btn btn-default"%>
+      <%= link_to "戻る", root_path, class: "btn btn-default"%>
       <%= link_to "#{@post.team.team_name}情報", team_path(@post.team), class: "btn btn-info"%>
     <% end %>
   </div>
