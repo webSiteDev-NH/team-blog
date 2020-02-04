@@ -15,7 +15,7 @@
   </div>
 
   <div class="col-md-10 col-md-offset-1 text-center">
-    <% if team_signed_in? %>
+    <% if team_signed_in? && current_team.id == @post.team_id %>
       <%= link_to "編集", edit_post_path, class: "btn btn-warning", style: "margin-left: 5px;"%>
       <%= link_to "削除", post_path, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class:"btn btn-danger"%>
       <%= link_to "戻る", root_path, class: "btn btn-default"%>
