@@ -6,4 +6,13 @@ class Post < ApplicationRecord
 
   belongs_to :team
   belongs_to :category
+
+  def self.search(search)
+    if search
+      Post.where('game_date LIKE(?)', "%#{search}%")
+    else
+      Post.all
+    end
+  end
+
 end

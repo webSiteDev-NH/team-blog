@@ -1,0 +1,13 @@
+<div class="row">
+
+  <%= render 'search-form'%>
+
+  <p class="text-center mgt-20">
+    <%= link_to "TOPページ", root_path, class:"btn btn-default"%>
+  </p>
+
+  <div class="team-posts">＜結果一覧＞</div>
+
+  <%= render partial: 'posts', locals: { posts: @posts} %>
+  
+</div>
