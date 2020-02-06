@@ -6,25 +6,43 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+      
        <% if team_signed_in? %>
         <a class="navbar-brand" href="/">チーム名：<%= current_team.team_name %></a>
        <% else %>
         <a class="navbar-brand" href="/">Futsulブログ</a>
        <% end %>
     </div>
+
     <% if team_signed_in? %>
-    <div class="collapse navbar-collapse" id="navigation">
-      <p class="navbar-text navbar-right"><%= link_to "ログアウト", destroy_team_session_path, method: :delete %></p>
-      <p class="navbar-text navbar-right"><%= link_to "チーム一覧", teams_path %></p>
-      <p class="navbar-text navbar-right"><%= link_to "マイチーム", team_path(current_team) %></p>
-      <p class="navbar-text navbar-right"><%= link_to "試合結果投稿", new_post_path %></p>
-    </div>
+      <div class="collapse navbar-collapse" id="navigation">
+        <li class="dropdown navbar-right navbar-brand">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MENU<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "試合結果投稿", new_post_path %></li>
+            <li><%= link_to "マイチーム", team_path(current_team) %></li>
+            <li><%= link_to "チーム一覧", teams_path %></li>
+            <li><%= link_to "得点ランキング", players_path %></li>
+            <li role="separator" class="divider"></li>
+            <%# <li class="dropdown-header"></li> %>
+            <li><%= link_to "ログアウト", destroy_team_session_path, method: :delete %></li>
+          </ul>
+        </li>
+      </div>
     <% else %>
-    <div class="collapse navbar-collapse" id="navigation">
-      <p class="navbar-text navbar-right"><%= link_to "チーム一覧", teams_path %></p>
-      <p class="navbar-text navbar-right"><%= link_to "チーム登録", new_team_registration_path %></p>
-      <p class="navbar-text navbar-right"><%= link_to "ログイン",  new_team_session_path %></p>
-    </div>
+      <div class="collapse navbar-collapse" id="navigation">
+        <li class="dropdown navbar-right navbar-brand">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MENU<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "チーム登録", new_team_registration_path %></li>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to "チーム一覧", teams_path %></li>
+            <li><%= link_to "得点ランキング", players_path %></li>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to "ログイン",  new_team_session_path %></li>
+          </ul>
+        </li>
+      </div>
     <% end %>
   </div>
 </nav>
