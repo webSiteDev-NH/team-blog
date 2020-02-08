@@ -1,5 +1,14 @@
 <div class="row">
   <h1 class="text-center"><%= @post.team.team_name %></h1>
+
+  <div class="text-center col-md-10 col-md-offset-1">
+    <% if @post.video? %>
+      <%= video_tag @post.video.url, controls: true, height: 470, weght: 300 %>
+    <% else %>
+      <P style="font-size: 25px;">動画・ハイライトはありません</p>
+    <% end %>
+  </div>
+
   <div class="post col-md-10 col-md-offset-1" >
     <p class="date">試合日：<%= @post.game_date.strftime('%Y/%m/%d')%></p>
     <p class="opponent text-center">vs <%= @post.opponent %></p>

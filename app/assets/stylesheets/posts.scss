@@ -21,7 +21,11 @@
 .posts{
   background-color: mintcream;
   border: solid 3px;
-  margin: 20px 40px 0;
+  margin-bottom: 40px;
+}
+
+.contributor{
+  font-size: 20px;
 }
 
 .post{
@@ -32,6 +36,10 @@
 
 .date{
   font-size: 20px;
+}
+
+.categories{
+
 }
 
 .opponent{
@@ -75,4 +83,13 @@
 
   .drow{
     color: gray;
+  }
+
+  .fa-video:before {
+    font-size: 30px;
+    color: antiquewhite;
+  }
+
+  .video-title{
+    color: antiquewhite;
   }

@@ -6,4 +6,7 @@ class Post < ApplicationRecord
 
   belongs_to :team
   belongs_to :category
+
+  mount_uploader :video, VideoUploader
+  
 end
