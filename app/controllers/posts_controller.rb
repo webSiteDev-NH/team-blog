@@ -11,6 +11,10 @@ class PostsController < ApplicationController
 
   def search
     @posts = Post.search(params[:keyword]).order(game_date: :desc).page(params[:page]).per(5)
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def show
