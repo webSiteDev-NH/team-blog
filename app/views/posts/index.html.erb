@@ -1,5 +1,11 @@
 <div class="row">
+
+  <%= render 'search-form'%>
+
   <div class="team-posts">＜結果一覧＞</div>
+  
+  <%= render partial: 'posts', locals: { posts: @posts} %>
+
   <% @posts.each do |post| %>
     <%#= link_to post do %>
       <div class=" contributor col-md-10 col-md-offset-1">

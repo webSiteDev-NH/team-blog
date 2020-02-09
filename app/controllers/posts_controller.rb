@@ -2,11 +2,19 @@ class PostsController < ApplicationController
 
   before_action :find_post, only: [:show, :edit, :update, :destroy]
   before_action :select_category, only: [:new, :create, :edit, :update]
-  before_action :return_top_page, except: [:index, :show]
+  before_action :return_top_page, except: [:index, :show, :search]
 
 
   def index
     @posts = Post.order(game_date: :desc).includes(:team).page(params[:page]).per(5)
+  end
+
+  def search
+    @posts = Post.search(params[:keyword]).order(game_date: :desc).page(params[:page]).per(5)
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def show
