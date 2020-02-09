@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'font-awesome-sprockets';
 @import "font-awesome";
 @import 'posts';
 @import 'teams';
@@ -10,6 +11,9 @@ body{
   background-size: cover;
 }
 
+li{
+  list-style: none;
+}
 .alert{
   text-align: center;
 }

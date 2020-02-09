@@ -6,5 +6,23 @@
   
   <%= render partial: 'posts', locals: { posts: @posts} %>
 
+  <% @posts.each do |post| %>
+    <%#= link_to post do %>
+      <div class=" contributor col-md-10 col-md-offset-1">
+        投稿チーム：<%= post.team.team_name%>
+      </div>
+      <div class="posts col-md-10 col-md-offset-1">
+        <p class="date">試合日：<%= post.game_date.strftime('%Y/%m/%d')%></p>
+        <p class="categories"><%= post.category.name%> <%= link_to "詳細/動画・ハイライト", post_path(post), class:"btn btn-info"%></p>
+        <p class="opponent text-center"><%= post.team.team_name %>　vs　<%= post.opponent %></p>
+        <div class="result text-center">
+          <%= post.goal%>　-　<%= post.allow%></span>
+        </div>
+      </div>
+    <%# end %>
+  <% end %>
+  <div class="col-md-10 col-md-offset-1">
+    <%= paginate(@posts)%>
+  </div>
 </div>
 

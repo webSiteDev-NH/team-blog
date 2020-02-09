@@ -26,6 +26,8 @@
 
 .categories{
   font-size: 25px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .players{
@@ -51,5 +53,5 @@ font-size: large;
 }
 
 .name-mgl{
-  margin-left: 200px;
+  margin-left: 125px;
 }

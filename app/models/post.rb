@@ -14,5 +14,7 @@ class Post < ApplicationRecord
       Post.all
     end
   end
-
+  
+  mount_uploader :video, VideoUploader
+  
 end

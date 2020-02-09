@@ -41,6 +41,13 @@
       <%= f.text_area :commentary, class:"form-control", rows: 8 %>
     </div>
 
+    <div class="form-group text-center">
+      <span class="video-title">動画・ハイライト投稿➡︎</span>
+      <%= f.label :video, class:"fas fa-video" do %>
+      <%= f.file_field :video, accept: 'video/*', style:"display:none;"%>
+      <% end %>
+    </div>
+
     <div class="text-center">
       <%= f.submit "投稿する", class: "btn btn-info" %>
       <%= link_to "戻る", root_path, class: "btn btn-default"%>
