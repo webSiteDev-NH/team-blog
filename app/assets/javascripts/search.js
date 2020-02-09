@@ -3,15 +3,19 @@ $(function(){
   var search_list = $(".posts-list");
 
   function appendPost(post) {
-    var html = `<div class="posts col-md-11">
-    <p class="date">試合日：${post.game_date}</p>
-    <p class="categories">${post.category}</p>
-    <p class="opponent text-center">${post.team_name}　vs　${post.opponent}</p>
-    <div class="result text-right">
-      ${post.result}
-      <span class="mgl-20">${post.goal} - ${post.allow}</span>
+    var html = `
+    <div class="contributor col-md-10 col-md-offset-1">
+        投稿チーム：${post.team_name}
     </div>
-  </div>`
+    <div class="posts col-md-10 col-md-offset-1">
+        <p class="date">試合日：${post.game_date}</p>
+        <p class="categories">${post.category}<a class="btn btn-info" href="/posts/${post.id}">詳細/動画・ハイライト</a></p>
+        <p class="opponent text-center">${post.team_name}　vs　${post.opponent}</p>
+      <div class="result text-right">
+        ${post.result}
+        <span class="mgl-20">${post.goal} - ${post.allow}</span>
+      </div>
+    </div>`
   search_list.append(html);
   }
 
