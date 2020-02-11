@@ -1,0 +1,53 @@
+<div class="row">
+
+  <h1 class="text-center"><%= @facility.facility_name%></h1>
+
+  <div class="col-md-5 col-md-offset-1 ">
+    <div class="facility-img text-center">
+      <% if @facility.image? %>
+        <%= image_tag @facility.image.thumb.url %>
+      <% else %>
+        <%= image_tag "/assets/download.jpg", size: '300*200' %>
+      <% end %>
+    </div>
+
+    <table class="table-bordered table-config">
+      <tbody>
+        <tr>
+          <th class="col-xs-3 text-center">住所</th>
+          <td class="col-xs-9"><%= simple_format @facility.address%></td>
+        </tr>
+        <tr>
+          <th class="col-xs-3 text-center">電話番号</th>
+          <td class="col-xs-9"><%=@facility.phone_number%></td>
+        </tr>
+        <tr>
+          <th class="col-xs-3 text-center">営業時間</th>
+          <td class="col-xs-9">
+            平日：<%=@facility.start_time.strftime('%H:%M')%>〜<%=@facility.close_time.strftime('%H:%M')%><br>
+            土日祝：<%=@facility.holiday_start_time.strftime('%H:%M')%>〜<%=@facility.holiday_close_time.strftime('%H:%M')%>
+          </td>
+        </tr>
+        <tr>
+          <th class="col-xs-3 text-center">アクセス</th>
+          <td class="col-xs-9"><%= simple_format @facility.access%></td>
+        </tr>
+        <tr>
+          <th class="col-xs-3 text-center">コート数</th>
+          <td class="col-xs-9"><%=@facility.courts%>面</td>
+        </tr>
+        <tr>
+          <th class="col-xs-3 text-center">URL</th>
+          <td class="col-xs-9"><%= link_to "ホームページ", @facility.url %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <%= link_to @facility.facebook do %>
+    <i class="fab fa-facebook-square"></i>
+  <% end %>
+
+  <%= link_to "編集", edit_facility_registration_path %>
+
+</div>
