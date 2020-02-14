@@ -1,24 +1,31 @@
-# README
+# FutsalBlog
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+どんな小規模なフットサルチームでも投稿出来て、記録を残せる
+ 
+# DEMO
+ 
+ 
+# Features（特徴）
+ 
+* チームとしてデータを残せる
+* フットサル施設の登録が出来ることで、利用者の増加を期待出来る
 
-Things you may want to cover:
+# Requirement（要件）
+ 
+ 
+# Installation
+ 
+ 
+# Usage
+ 
 
-* Ruby version
+# Note
+ 
+ 
+# Author
 
-* System dependencies
+* 野々村 宏樹
+* OSAKA_TECH::EXPERT64期
+ 
+# License
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
