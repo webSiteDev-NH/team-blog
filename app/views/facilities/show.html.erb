@@ -1,13 +1,19 @@
 <div class="row">
 
   <h1 class="text-center"><%= @facility.facility_name%></h1>
+  <% if facility_signed_in? && current_facility.id == @facility.id %>
+    <div class="text-center">
+      <%= link_to "編集", edit_facility_registration_path, class:"btn btn-warning" %>
+      <%= link_to "削除", facility_registration_path, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class:"btn btn-danger" %>
+    </div>
+  <% end %>
 
   <div class="col-md-5 col-md-offset-1 ">
     <div class="facility-img text-center">
       <% if @facility.image? %>
         <%= image_tag @facility.image.thumb.url %>
       <% else %>
-        <%= image_tag "/assets/download.jpg", size: '300*200' %>
+        <%= image_tag "/assets/download.jpg", size: '350x280' %>
       <% end %>
     </div>
 
@@ -24,8 +30,10 @@
         <tr>
           <th class="col-xs-3 text-center">営業時間</th>
           <td class="col-xs-9">
+            <% if @facility.start_time? && @facility.close_time? && @facility.holiday_start_time? && @facility.holiday_close_time? %>
             平日：<%=@facility.start_time.strftime('%H:%M')%>〜<%=@facility.close_time.strftime('%H:%M')%><br>
             土日祝：<%=@facility.holiday_start_time.strftime('%H:%M')%>〜<%=@facility.holiday_close_time.strftime('%H:%M')%>
+            <% end %>
           </td>
         </tr>
         <tr>
@@ -44,175 +52,165 @@
     </table>
   </div>
 
+  <%# マップ表示されてない %>
+  <div id="map" style='width: 400px; height: 400px;'></div>
+  <script type="text/javascript">
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(<%= raw @hash.to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+  });
+  </script>
+
+  <%# facebook,insta,twitter %>
   <% if @facility.facebook? && @facility.instagram? && @facility.twitter? %>
     <div class="icons text-center">
       <%= link_to @facility.facebook do %>
-        <i class="fab fa-facebook-square fa-3x faa-pulse animated-hover"></i>
-        <p>facebook</p>
+        <i class="fab fa-facebook-square fa-3x faa-pulse animated-hover"><p class="icon-name">facebook</p></i>
       <% end %>
       <%= link_to @facility.instagram do %>
         <div class="icon-insta">
-          <i class="fab fa-instagram fa-3x faa-bounce animated-hover"></i>
-          <p>instagram</p>
+          <i class="fab fa-instagram fa-3x faa-bounce animated-hover"><p class="icon-name">Instagram</p></i>
         </div>
       <% end %>
       <%= link_to @facility.twitter do %>
         <div class="icon-twitter">
-          <i class="fab fa-twitter-square fa-3x faa-wrench animated-hover"></i>
-          <p>twitter</p>
+          <i class="fab fa-twitter-square fa-3x faa-wrench animated-hover"><p class="icon-name">twitter</p></i>
         </div>
       <% end %>
     </div>
-
+  <%# facebook,insta %>
   <% elsif @facility.facebook? && @facility.instagram? %>
     <div class="icons text-center">
       <%= link_to @facility.facebook do %>
-        <i class="fab fa-facebook-square fa-3x faa-pulse animated-hover"></i>
-        <p>facebook</p>
+        <i class="fab fa-facebook-square fa-3x faa-pulse animated-hover"><p class="icon-name">facebook</p></i>
       <% end %>
       <%= link_to @facility.instagram do %>
         <div class="icon-insta">
-          <i class="fab fa-instagram fa-3x faa-bounce animated-hover"></i>
-          <p>instagram</p>
+          <i class="fab fa-instagram fa-3x faa-bounce animated-hover"><p class="icon-name">Instagram</p></i>
         </div>
       <% end %>
       <%= link_to @facility.twitter do %>
         <div class="icon-not_twitter">
-          <i class="fab fa-twitter-square fa-3x faa-wrench animated-hover"></i>
-          <p>twitter</p>
+          <i class="fab fa-twitter-square fa-3x"><p class="icon-name">twitter</p></i>
         </div>
       <% end %>
     </div>
-
+  <%# facebook,twitter %>
   <% elsif @facility.facebook? && @facility.twitter? %>
     <div class="icons text-center">
       <%= link_to @facility.facebook do %>
-        <i class="fab fa-facebook-square fa-3x faa-pulse animated-hover"></i>
-        <p>facebook</p>
+        <i class="fab fa-facebook-square fa-3x faa-pulse animated-hover"><p class="icon-name">facebook</p></i>
       <% end %>
       <%= link_to @facility.instagram do %>
         <div class="icon-not_insta">
-          <i class="fab fa-instagram fa-3x faa-bounce animated-hover"></i>
-          <p>instagram</p>
+          <i class="fab fa-instagram fa-3x faa-bounce animated-hover"> <p class="icon-name">Instagram</p></i>
         </div>
       <% end %>
       <%= link_to @facility.twitter do %>
         <div class="icon-not_twitter">
           <i class="fab fa-twitter-square fa-3x"></i>
-          <p>twitter</p>
+          <p class="icon-name">twitter</p>
         </div>
       <% end %>
     </div>
-
-  <% elsif @facility.twitter? && @facility.instagram? %>
+  <%# insta,twitter %>
+  <% elsif @facility.instagram? && @facility.twitter? %>
     <div class="icons text-center">
       <%= link_to @facility.facebook do %>
         <div class="icon-not_facebook">
-          <i class="fab fa-facebook-square"></i>
-          <p>facebook</p>
+          <i class="fab fa-facebook-square fa-3x"><p class="icon-name">facebook</p></i>
         </div>
       <% end %>
       <%= link_to @facility.instagram do %>
         <div class="icon-insta">
-          <i class="fab fa-instagram fa-3x faa-bounce animated-hover"></i>
-          <p>instagram</p>
+          <i class="fab fa-instagram fa-3x faa-bounce animated-hover"><p class="icon-name">Instagram</p></i>
         </div>
       <% end %>
       <%= link_to @facility.twitter do %>
         <div class="icon-twitter">
-          <i class="fab fa-twitter-square fa-3x faa-wrench animated-hover"></i>
-          <p>twitter</p>
+          <i class="fab fa-twitter-square fa-3x faa-wrench animated-hover"><p class="icon-name">twitter</p></i>
         </div>
       <% end %>
     </div>
-
+  <%# facebook %>
   <% elsif @facility.facebook? %>
     <div class="icons text-center">
       <%= link_to @facility.facebook do %>
-        <i class="fab fa-facebook-square fa-3x faa-pulse animated-hover"></i>
-        <p>facebook</p>
+        <i class="fab fa-facebook-square fa-3x faa-pulse animated-hover"><p class="icon-name">facebook</p></i>
       <% end %>
       <%= link_to @facility.instagram do %>
         <div class="icon-not_insta">
-          <i class="fab fa-instagram fa-3x"></i>
-          <p>instagram</p>
+          <i class="fab fa-instagram fa-3x"><p class="icon-name">Instagram</p></i>
         </div>
       <% end %>
       <%= link_to @facility.twitter do %>
         <div class="icon-not_twitter">
-          <i class="fab fa-twitter-square fa-3x"></i>
-          <p>twitter</p>
+          <i class="fab fa-twitter-square fa-3x"><p class="icon-name">twitter</p></i>
         </div>
       <% end %>
     </div>
-
+  <%# insta %>
   <% elsif @facility.instagram? %>
     <div class="icons text-center">
       <%= link_to @facility.facebook do %>
         <div class="icon-not_facebook">
-          <i class="fab fa-facebook-square"></i>
-          <p>facebook</p>
+          <i class="fab fa-facebook-square fa-3x"><p class="icon-name">facebook</p></i>
         </div>
       <% end %>
       <%= link_to @facility.instagram do %>
         <div class="icon-insta">
-          <i class="fab fa-instagram fa-3x faa-bounce animated-hover"></i>
-          <p>instagram</p>
+          <i class="fab fa-instagram fa-3x faa-bounce animated-hover"><p class="icon-name">Instagram</p></i>
         </div>
       <% end %>
       <%= link_to @facility.twitter do %>
         <div class="icon-not_twitter">
-          <i class="fab fa-twitter-square fa-3x"></i>
-          <p>twitter</p>
+          <i class="fab fa-twitter-square fa-3x"><p class="icon-name">twitter</p></i>
         </div>
       <% end %>
     </div>
-
+  <%# twitter %>
   <% elsif @facility.twitter? %>
     <div class="icons text-center">
       <%= link_to @facility.facebook do %>
        <div class="icon-not_facebook">
-          <i class="fab fa-facebook-square"></i>
-          <p>facebook</p>
+          <i class="fab fa-facebook-square fa-3x"><p class="icon-name">facebook</p></i>
         </div>
       <% end %>
       <%= link_to @facility.instagram do %>
         <div class="icon-not_insta">
-          <i class="fab fa-instagram fa-3x"></i>
-          <p>instagram</p>
+          <i class="fab fa-instagram fa-3x"><p class="icon-name">Instagram</p></i>
         </div>
       <% end %>
       <%= link_to @facility.twitter do %>
         <div class="icon-twitter">
-          <i class="fab fa-twitter-square fa-3x faa-wrench animated-hover"></i>
-          <p>twitter</p>
+          <i class="fab fa-twitter-square fa-3x faa-wrench animated-hover"><p class="icon-name">twitter</p></i>
         </div>
       <% end %>
     </div>
-
+  <%# not_SNS %>
   <% else %>
     <div class="icons text-center">
       <%= link_to @facility.facebook do %>
        <div class="icon-not_facebook">
-          <i class="fab fa-facebook-square"></i>
-          <p>facebook</p>
+          <i class="fab fa-facebook-square fa-3x"><p class="icon-name">facebook</p></i>
         </div>
       <% end %>
       <%= link_to @facility.instagram do %>
         <div class="icon-not_insta">
-          <i class="fab fa-instagram fa-3x"></i>
-          <p>instagram</p>
+          <i class="fab fa-instagram fa-3x"><p class="icon-name">Instagram</p></i>
         </div>
       <% end %>
       <%= link_to @facility.twitter do %>
         <div class="icon-not_twitter">
-          <i class="fab fa-twitter-square fa-3x"></i>
-          <p>twitter</p>
+          <i class="fab fa-twitter-square fa-3x"><p class="icon-name">twitter</p></i>
         </div>
       <% end %>
     </div>
   <% end %>
 
-  <%= link_to "編集", edit_facility_registration_path, class:"btn btn-warning" %>
-
+  <div class="text-center mgb-20">
+    <%= link_to "戻る", :back, class:"btn btn-default"%>
+  </div>
 </div>
