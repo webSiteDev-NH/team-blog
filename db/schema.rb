@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_11_012014) do
+ActiveRecord::Schema.define(version: 2020_02_12_221909) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 2020_02_11_012014) do
     t.string "facebook"
     t.string "twitter"
     t.string "instagram"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["email"], name: "index_facilities_on_email", unique: true
     t.index ["reset_password_token"], name: "index_facilities_on_reset_password_token", unique: true
   end

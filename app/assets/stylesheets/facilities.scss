@@ -4,11 +4,11 @@
 
 .table-config{
   background-color: whitesmoke;
-  margin-bottom: 20px;
+  margin: 10px auto;
 }
 
 .facility-img{
-  margin-bottom: 10px;
+  margin: 15px;
 }
 
 .facility-edit{
@@ -20,14 +20,25 @@
   font-size: large;
 }
 
+#map{
+  margin: 45px auto;
+}
+
 .icons{
+  font-weight: bold;
+  margin: 20px;
   display: flex;
   justify-content: center;
+}
+
+.icon-name{
+  font-size: 20px;
 }
 
 .icon-not_facebook{
   color: gray;
 }
+
 .icon-insta{
   color: darkviolet;
   margin-left: 25px;
@@ -40,10 +51,10 @@
 
 .icon-twitter{
   color: cornflowerblue;
-  margin-left: 30px;
+  margin-left: 35px;
 }
 
 .icon-not_twitter{
   color: gray;
-  margin-left: 25px;
+  margin-left: 35px;
 }
