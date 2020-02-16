@@ -11,6 +11,11 @@
       </div>
 
       <div class="form-group">
+        <%= f.label :address, "住所" %><br />
+        <%= f.text_area :address, class: "form-control", autofocus: true %>
+      </div>
+      
+      <div class="form-group">
         <%= f.label :email, "メールアドレス" %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
       </div>

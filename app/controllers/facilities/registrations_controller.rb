@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Facilities::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
+  before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -38,23 +38,31 @@ class Facilities::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
+
+  def facility_params
+    params.require(:facility).permit.(:facility_name, :address, :phone_number, :start_time, :holiday_start_time, :holiday_close_time, :close_time, :access, :courts, :url, :facebook, :twitter, :instagram, :image, :latitude, :longitude)
+  end
+  
+  # If you have extra params to permit, append them to the sanitizer.
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:facility_name, :address, :latitude, :longitude])
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  # end
-
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update, keys: [:facility_name, :address, :phone_number, :start_time, :holiday_start_time, :holiday_close_time, :close_time, :access, :courts, :url, :facebook, :twitter, :instagram, :image, :latitude, :longitude])
+  end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_sign_up_path_for(resource)
+    edit_facility_registration_path(resource)
+  end
 
+  # The path used after update.
+  def after_update_path_for(resource)
+    facility_path(resource)
+  end
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
