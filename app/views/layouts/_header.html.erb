@@ -7,11 +7,13 @@
         <span class="icon-bar"></span>
       </button>
 
-       <% if team_signed_in? %>
+      <% if team_signed_in? %>
         <a class="navbar-brand" href="/">チーム名：<%= current_team.team_name %></a>
-       <% else %>
+      <% elsif facility_signed_in? %>
+        <a class="navbar-brand" href="/">施設名：<%= current_facility.facility_name %></a>
+      <% else %>
         <a class="navbar-brand" href="/">Futsulブログ</a>
-       <% end %>
+      <% end %>
     </div>
 
     <% if team_signed_in? %>
@@ -21,13 +23,45 @@
           <ul class="dropdown-menu">
             <li><%= link_to "TOPページ", root_path %></li>
             <li role="separator" class="divider"></li>
-            <li><%= link_to "試合結果投稿", new_post_path %></li>
-            <li><%= link_to "マイチーム", team_path(current_team) %></li>
+            <li class="dropdown-header">チームMENU</li>
             <li><%= link_to "チーム一覧", teams_path %></li>
             <li><%= link_to "得点ランキング", players_path %></li>
             <li role="separator" class="divider"></li>
-            <%# <li class="dropdown-header"></li> %>
+            <li class="dropdown-header">施設MENU</li>
+            <li><%= link_to "施設一覧", facilities_path %></li>
+          </ul>
+        </li>
+        <li class="dropdown navbar-right navbar-brand">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">マイページ<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "試合結果投稿", new_post_path %></li>
+            <li><%= link_to "チーム詳細", team_path(current_team) %></li>
+            <li role="separator" class="divider"></li>
             <li><%= link_to "ログアウト", destroy_team_session_path, method: :delete %></li>
+          </ul>
+        </li>
+      </div>
+    <% elsif facility_signed_in? %>
+      <div class="collapse navbar-collapse" id="navigation">
+        <li class="dropdown navbar-right navbar-brand">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MENU<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "TOPページ", root_path %></li>
+            <li role="separator" class="divider"></li>
+            <li class="dropdown-header">チームMENU</li>
+            <li><%= link_to "チーム一覧", teams_path %></li>
+            <li><%= link_to "得点ランキング", players_path %></li>
+            <li role="separator" class="divider"></li>
+            <li class="dropdown-header">施設MENU</li>
+            <li><%= link_to "施設一覧", facilities_path %></li>
+          </ul>
+        </li>
+        <li class="dropdown navbar-right navbar-brand">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">マイページ<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "施設詳細", facility_path(current_facility) %></li>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to "ログアウト", destroy_facility_session_path, method: :delete %></li>
           </ul>
         </li>
       </div>
@@ -38,12 +72,16 @@
           <ul class="dropdown-menu">
             <li><%= link_to "TOPページ", root_path %></li>
             <li role="separator" class="divider"></li>
-            <li><%= link_to "チーム登録", new_team_registration_path %></li>
-            <li role="separator" class="divider"></li>
+            <li class="dropdown-header">チームMENU</li>
             <li><%= link_to "チーム一覧", teams_path %></li>
             <li><%= link_to "得点ランキング", players_path %></li>
-            <li role="separator" class="divider"></li>
+            <li><%= link_to "チーム登録", new_team_registration_path %></li>
             <li><%= link_to "ログイン",  new_team_session_path %></li>
+            <li role="separator" class="divider"></li>
+            <li class="dropdown-header">施設MENU</li>
+            <li><%= link_to "施設一覧", facilities_path %></li>
+            <li><%= link_to "施設登録", new_facility_registration_path %></li>
+            <li><%= link_to "ログイン", new_facility_session_path %></li>
           </ul>
         </li>
       </div>

@@ -1,0 +1,60 @@
+// Place all the styles related to the facilities controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.table-config{
+  background-color: whitesmoke;
+  margin: 10px auto;
+}
+
+.facility-img{
+  margin: 15px;
+}
+
+.facility-edit{
+  font-weight: bold;
+}
+
+.facility-list{
+  margin-top: 20px;
+  font-size: large;
+}
+
+#map{
+  margin: 45px auto;
+}
+
+.icons{
+  font-weight: bold;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.icon-name{
+  font-size: 20px;
+}
+
+.icon-not_facebook{
+  color: gray;
+}
+
+.icon-insta{
+  color: darkviolet;
+  margin-left: 25px;
+}
+
+.icon-not_insta{
+  color: gray;
+  margin-left: 25px;
+}
+
+.icon-twitter{
+  color: cornflowerblue;
+  margin-left: 35px;
+}
+
+.icon-not_twitter{
+  color: gray;
+  margin-left: 35px;
+}

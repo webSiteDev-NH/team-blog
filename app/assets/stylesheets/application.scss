@@ -5,6 +5,7 @@
 @import 'posts';
 @import 'teams';
 @import 'players';
+@import 'facilities';
 
 body{
   background-image: image-url('3e2aa33ca73f180999d8b41dd74775f7_w.jpg');
@@ -49,4 +50,8 @@ h1{
 
 .mgr-40{
   margin-right: 40px;
+}
+
+.mgb-20{
+  margin-bottom: 20px;
 }
