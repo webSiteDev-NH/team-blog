@@ -45,12 +45,12 @@
       <%= f.text_area :play_style, rows:3, class:"form-control" %>
     </div>
 
-    <% if team_signed_in? %>
-      <div class="text-center">
+    <div class="text-center mgb-20">
+      <% if team_signed_in? %>
         <%= f.submit "登録する", class: "btn btn-info" %>
-        <%= link_to "戻る", affiliation_team_path(@team),class:"btn btn-default" %>
-      </div>
-    <% else %>
-    <% end %>
+        <%= link_to "選手一覧", affiliation_team_path(@team) ,class:"btn btn-default" %>
+      <% else %>
+      <% end %>
+    </div>
   <% end %>
 </div>

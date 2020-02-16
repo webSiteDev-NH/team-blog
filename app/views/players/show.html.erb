@@ -12,7 +12,7 @@
     <h1 class="text-center"><%= @player.name %></h1>
       <div class="player-img text-center">
         <% if @player.image? %>
-          <%#= image_tag @player.image.url %>
+          <%# thumbでリサイズ %>
           <%= image_tag @player.image.thumb.url %>
         <% else %>
           <%= image_tag "/assets/download.png", size: '200x200' %>
@@ -45,18 +45,31 @@
           <td><%= simple_format @player.play_style %></td>
         </tr>
           <td>ゴール数</td>
-          <td><%= @player.goals %>点</td>
+          <% if team_signed_in? && current_team.id && @player.team_id %>
+          <td>
+            <%= form_for @player do |f| %>
+                <%= f.number_field :goals, max:200, min:0 %>点
+                <span class="goals-form_btn">
+                <%= f.submit "更新", class: "btn btn-info" %>
+                </span>
+            <% end %>
+          </td>
+          <% else %>
+          <td>
+            <%= @player.goals %>点
+          </td>
+          <% end %>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
+  <div class="col-md-6 col-md-offset-3 text-right ply-update">
+    更新日：<%= @player.updated_at.strftime('%Y/%m/%d') %>
+  </div>
 
-  <div class="col-md-6 col-md-offset-3 text-center plyunder-mgt">
-    <% if team_signed_in? %>
+  <div class="col-md-6 col-md-offset-3 text-center mgt-20 mgb-20">
       <%= link_to "戻る", affiliation_team_path(@player.team),class:"btn btn-default" %>
-    <% else %>
-      <%= link_to "戻る", affiliation_team_path(@player.team), class:"btn btn-default" %>
-    <% end %>
   </div>
 
 </div>

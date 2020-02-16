@@ -36,6 +36,7 @@
           <ul class="dropdown-menu">
             <li><%= link_to "試合結果投稿", new_post_path %></li>
             <li><%= link_to "チーム詳細", team_path(current_team) %></li>
+            <li><%= link_to "所属選手", affiliation_team_path(current_team) %></li>
             <li role="separator" class="divider"></li>
             <li><%= link_to "ログアウト", destroy_team_session_path, method: :delete %></li>
           </ul>
