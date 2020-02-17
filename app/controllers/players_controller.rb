@@ -5,7 +5,16 @@ class PlayersController < ApplicationController
 
 
   def index
-    @players = Player.all.includes(:team)
+    # 得点ランキング
+    @players = Player.all.includes(:team).order(goals: :desc)
+    # １位
+    @first_scorer = @players.first
+    # ２位
+    @second_scorer = @players.second
+    # ３位
+    @third_scorer = @players.third
+    # ４位〜７位
+    @low_scorer = @players.limit(7).offset(3)
   end
 
   def show

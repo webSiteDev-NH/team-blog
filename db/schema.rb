@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_12_221909) do
+ActiveRecord::Schema.define(version: 2020_02_16_122556) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2020_02_12_221909) do
     t.date "birthday"
     t.integer "height"
     t.integer "weight"
-    t.integer "goals"
+    t.integer "goals", default: 0
     t.string "play_style"
     t.string "image"
     t.bigint "team_id"

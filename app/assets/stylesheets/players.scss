@@ -33,3 +33,49 @@
   font-size: 18px;
   color: black;
 }
+
+// 得点ランキング
+// １位
+.icon-gold{
+  font-size: xx-large;
+  color: goldenrod;
+  text-align: center;
+}
+.first-ply{
+  font-size: xx-large;
+}
+.first-goals{
+  font-size: xx-large;
+}
+// ２位
+.icon-silver{
+  font-size: x-large;
+  color: lightslategray;
+  text-align: center;
+}
+.second-ply{
+  font-size: x-large;
+}
+.second-goals{
+  font-size: x-large;
+}
+// ３位
+.icon-bronze{
+  color: sienna;
+  font-size: 21px;
+  text-align: center;
+}
+.third-ply{
+  font-size: 21px;
+  text-align: center;
+}
+.third-goals{
+  font-size: 21px;
+}
+// 4位〜10位
+.low-list{
+  background-color: snow;
+}
+.low-rank{
+  text-align: center;
+}

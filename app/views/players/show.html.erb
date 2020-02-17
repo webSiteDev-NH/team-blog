@@ -1,7 +1,7 @@
 <div class="row">
   <h1 class="text-center"><%= @player.team.team_name%></h1>
   <div class="col-md-6 col-md-offset-3 text-center plytop-mgb">
-    <% if team_signed_in? %>
+    <% if team_signed_in? && current_team.id == @player.team_id %>
         <%= link_to "編集", edit_player_path, class:"btn btn-warning"%>
         <%= link_to "削除", player_path, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class:"btn btn-danger" %>
     <% else %>
@@ -45,7 +45,7 @@
           <td><%= simple_format @player.play_style %></td>
         </tr>
           <td>ゴール数</td>
-          <% if team_signed_in? && current_team.id && @player.team_id %>
+          <% if team_signed_in? && current_team.id == @player.team_id %>
           <td>
             <%= form_for @player do |f| %>
                 <%= f.number_field :goals, max:200, min:0 %>点
@@ -69,7 +69,8 @@
   </div>
 
   <div class="col-md-6 col-md-offset-3 text-center mgt-20 mgb-20">
-      <%= link_to "戻る", affiliation_team_path(@player.team),class:"btn btn-default" %>
+      <%= link_to "戻る", :back,class:"btn btn-default" %>
+      <%= link_to "選手一覧", affiliation_team_path(@player.team),class:"btn btn-info" %>
   </div>
 
 </div>
