@@ -13,24 +13,59 @@
     <p class="date">試合日：<%= @post.game_date.strftime('%Y/%m/%d')%></p>
     <p class="opponent text-center">vs <%= @post.opponent %></p>
     <div class="result text-right">
-      <%= @post.result %> <%= @post.goal %> - <%= @post.allow %>
+    <%# 勝敗によっての色分け %>
+      <% if @post.result == "Win" %>
+        <span class="win"><%= @post.result %></span> <%= @post.goal %> - <%= @post.allow %>
+      <% elsif @post.result == "Lose" %>
+        <span class="lose"><%= @post.result %></span> <%= @post.goal %> - <%= @post.allow %>
+      <% else%>
+        <span class="drow"><%= @post.result %></span> <%= @post.goal %> - <%= @post.allow %>
+      <% end %>
     </div>
+
     <p class="scorer">＜得点者＞<br>
-    <%= @post.scorer %></p>
+    <span class="mgl-20"><%= @post.scorer %></span>
+    </p>
+
+    <% if team_signed_in? && current_team.id == @post.team_id %>
+      <% if @post.goals_check.nil? %>
+        <div class="alert alert-danger" role="alert">
+          まだ完了しておりません
+        </div>
+      <% end %>
+      <%= form_with model: @post do |f| %>
+        <%= f.check_box :goals_check, as: :boolean %>
+        <%= f.label :goals_check, "←得点者のゴール数を更新後、チェックして完了をクリックしてください" %>
+        <%= f.submit "完了" %><br>
+        <span class="mgl-20">（更新なしの場合はチェックせずに完了をクリックしてください）</span>
+      <% end %>
+      <% @players.each do |player|%>
+        <%= form_with model: player, class: :goals_list do |f| %>
+          <span class="mgl-10">
+            <%= player.number %>
+            <%= player.position %>
+            <%= player.name %>
+            <%= f.number_field :goals, max: 200, min: 0 %>点            
+            <span class="mgl-10"><%= f.submit "更新", class: "btn btn-info" %></span>
+          </span>
+        <% end %>
+      <% end %>
+    <% end %>
+
     <p class="commentary">
-      ＜戦評＞<br>
-      <%= simple_format @post.commentary %>
+      ＜戦評＞
+      <span class="mgl-20"><%= simple_format @post.commentary %></span>
     </p>
   </div>
 
-  <div class="col-md-10 col-md-offset-1 text-center">
+  <div class="col-md-10 col-md-offset-1 text-right mgb-20">
     <% if team_signed_in? && current_team.id == @post.team_id %>
+      <%= link_to "戻る", :back, class: "btn btn-default"%>
       <%= link_to "編集", edit_post_path, class: "btn btn-warning", style: "margin-left: 5px;"%>
       <%= link_to "削除", post_path, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class:"btn btn-danger"%>
-      <%= link_to "戻る", root_path, class: "btn btn-default"%>
       <%= link_to "マイチーム", team_path(@post.team), class: "btn btn-info"%>
     <% else %>
-      <%= link_to "戻る", root_path, class: "btn btn-default"%>
+      <%= link_to "戻る", :back, class: "btn btn-default"%>
       <%= link_to "#{@post.team.team_name}情報", team_path(@post.team), class: "btn btn-info"%>
     <% end %>
   </div>

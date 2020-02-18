@@ -18,6 +18,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @players = @post.team.players.order(number: :asc)
   end
 
   def new
@@ -63,7 +64,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:opponent,:result,:goal,:allow,:scorer,:commentary, :game_date, :category_id, :video).merge(team_id: current_team.id)
+    params.require(:post).permit(:opponent,:result,:goal,:allow,:scorer,:commentary, :game_date, :category_id, :video, :goals_check).merge(team_id: current_team.id)
   end
 
   def return_top_page

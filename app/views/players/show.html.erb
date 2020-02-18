@@ -48,10 +48,10 @@
           <% if team_signed_in? && current_team.id == @player.team_id %>
           <td>
             <%= form_for @player do |f| %>
-                <%= f.number_field :goals, max:200, min:0 %>点
-                <span class="goals-form_btn">
-                <%= f.submit "更新", class: "btn btn-info" %>
-                </span>
+              <%= f.number_field :goals, max:200, min:0 %>点
+              <span class="goals-form_btn">
+              <%= f.submit "更新", class: "btn btn-info" %>
+              </span>
             <% end %>
           </td>
           <% else %>
