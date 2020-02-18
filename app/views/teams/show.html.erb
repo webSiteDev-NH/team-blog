@@ -2,9 +2,31 @@
   <div class="team-info text-center">
     <h1><%= @team.team_name %></h1>
     <p style="font-size: 25px;">代表者：<%= @team.representative %></p>
-    <% if team_signed_in? && current_team.id == @team.id %>
-      <%= link_to "チーム編集", edit_team_registration_path, class: "btn btn-warning "%>
-      <%= link_to "チーム削除", team_registration_path, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class:"btn btn-danger"%>
+    <div class="mgb-20">
+      <% if team_signed_in? && current_team.id == @team.id %>
+        <%= link_to "チーム編集", edit_team_registration_path, class: "btn btn-warning "%>
+        <%= link_to "チーム削除", team_registration_path, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class:"btn btn-danger"%>
+      <% end %>
+    </div>
+
+    <%# 得点記録の確認 %>
+    <% unless @goals_confirmation == 0 %>
+      <div class="alert alert-danger" role="alert">
+        チーム総得点（<%= @total_goal%>点）と所属選手総得点（<%= @player_total_goal %>点）に<%= @goals_confirmation %>点、誤差があります
+      </div>
+    <% end %>
+    
+    <%# 投稿（得点更新）のチェック（完了）の有無確認 %>
+    <% unless @check_confirmation == 0 %>
+      <div class="alert alert-danger" role="alert">
+        完了していない投稿が<%= @check_confirmation %>件、あります<br>
+        <%  @check_confirmation_datails.each do |d| %>
+          <div class="text-left check-details">
+            <%= d.game_date.strftime('%Y/%m/%d') %>
+            　vs　<%= d.opponent %><br>
+          </div>
+        <% end %>
+      </div>
     <% end %>
 
     <div class="total-record">

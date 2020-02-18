@@ -37,7 +37,7 @@
         <%= f.check_box :goals_check, as: :boolean %>
         <%= f.label :goals_check, "←得点者のゴール数を更新後、チェックして完了をクリックしてください" %>
         <%= f.submit "完了" %><br>
-        <span class="mgl-20">（更新なしの場合はチェックせずに完了をクリックしてください）</span>
+        <span class="mgl-20">（更新なしの場合は<span class="pick-up">チェックせずに完了をクリックしてください</span>)</span>
       <% end %>
       <% @players.each do |player|%>
         <%= form_with model: player, class: :goals_list do |f| %>
@@ -45,7 +45,7 @@
             <%= player.number %>
             <%= player.position %>
             <%= player.name %>
-            <%= f.number_field :goals, max: 200, min: 0 %>点            
+            <%= f.number_field :goals, max: 200, min: 0 %>点
             <span class="mgl-10"><%= f.submit "更新", class: "btn btn-info" %></span>
           </span>
         <% end %>

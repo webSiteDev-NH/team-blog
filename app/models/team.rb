@@ -9,4 +9,10 @@ class Team < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :players
+
+  def goals_confirmation
+    @total_goal = Post.where(team_id: @team).sum(:goal)
+    @player_total_goal = Player.where(team_id: @team).sum(:goals)
+    @goals_confirmation = @total_goal - @player_total_goal
+  end
 end

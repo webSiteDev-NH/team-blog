@@ -6,10 +6,20 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
-    # 選手を背番号順に表示
-    @players = @team.players.order(number: :asc)
+
+    # 得点誤差確認 = チーム得点 - 所属選手の総得点
+    @total_goal = Post.where(team_id: @team).sum(:goal)
+    @player_total_goal = Player.where(team_id: @team).sum(:goals)
+    @goals_confirmation = @total_goal - @player_total_goal
+
+    # チェック完了の有無
+    @check_confirmation = Post.where(team_id: @team, goals_check: nil).length
+    @check_confirmation_datails = Post.where(team_id: @team, goals_check: nil).select(:game_date, :opponent)
+
     # 試合結果投稿を試合日順に表示
     @posts = @team.posts.page(params[:page]).per(5).order(game_date: :desc)
+
+    # 戦績
     # 全試合
     @total_game = Post.where(team_id: @team)
     @total_win = Post.where(result: "Win", team_id: @team)
@@ -42,6 +52,8 @@ class TeamsController < ApplicationController
 
   def affiliation
     @team = Team.find(params[:id])
+    
+    # 選手を背番号順に表示
     @players = @team.players.order(number: :asc)
   end
 
