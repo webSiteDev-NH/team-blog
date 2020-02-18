@@ -12,7 +12,7 @@
     <%# 得点記録の確認 %>
     <% unless @goals_confirmation == 0 %>
       <div class="alert alert-danger" role="alert">
-        チーム総得点（<%= @total_goal%>点）と所属選手総得点（<%= @player_total_goal %>点）に<%= @goals_confirmation %>点、誤差があります
+        チーム総得点（<%= @total_goal %>点）と所属選手総得点（<%= @player_total_goal %>点）に<%= @goals_confirmation.abs %>点、誤差があります
       </div>
     <% end %>
     

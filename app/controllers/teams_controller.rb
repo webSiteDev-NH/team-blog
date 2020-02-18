@@ -52,7 +52,7 @@ class TeamsController < ApplicationController
 
   def affiliation
     @team = Team.find(params[:id])
-    
+
     # 選手を背番号順に表示
     @players = @team.players.order(number: :asc)
   end
