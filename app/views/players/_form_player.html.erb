@@ -10,12 +10,18 @@
       <% if player.image? %>
         <%= image_tag player.image.thumb.url %>
         <p>現在の画像</p>
+        画像選択　➡︎　
+        <%= f.label :image, for: "file-input", class: "fa fa-file-picture-o" do %>
+          <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', id: "file-input", style: "display: none;" %>
+        <% end %>
+        <p><%= f.check_box :remove_image %>⬅︎画像を削除する場合はチェック</p>
       <% else %>
         <%= image_tag "/assets/download.png", size: '200x200' %>
         <p>デフォルト</p>
-      <% end %>
-      <%= f.label :image, for: "file-input", class: "fa fa-file-picture-o" do %>
-        <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', id: "file-input", style: "display: none;" %>
+        画像選択　➡︎　
+        <%= f.label :image, for: "file-input", class: "fa fa-file-picture-o" do %>
+          <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', id: "file-input", style: "display: none;" %>
+        <% end %>
       <% end %>
     </div>
 

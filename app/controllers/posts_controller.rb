@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
   before_action :find_post, only: [:show, :edit, :update, :destroy]
+  before_action :select_facility, only: [:new, :create, :edit, :update]
   before_action :select_category, only: [:new, :create, :edit, :update]
   before_action :return_top_page, except: [:index, :show, :search]
 
@@ -38,6 +39,9 @@ class PostsController < ApplicationController
   end
 
   def update
+    # 動画・ハイライト削除
+    @post.remove_video!
+
     if @post.update(post_params)
       redirect_to @post, notice: '更新できました'
     else
@@ -59,12 +63,16 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def select_facility
+    @facility = Facility.all
+  end
+
   def select_category
     @category = Category.all
   end
 
   def post_params
-    params.require(:post).permit(:opponent,:result,:goal,:allow,:scorer,:commentary, :game_date, :category_id, :video, :goals_check).merge(team_id: current_team.id)
+    params.require(:post).permit(:opponent,:result,:goal,:allow,:scorer,:commentary, :game_date, :category_id, :facility_id, :venue, :video, :remove_video, :goals_check).merge(team_id: current_team.id)
   end
 
   def return_top_page

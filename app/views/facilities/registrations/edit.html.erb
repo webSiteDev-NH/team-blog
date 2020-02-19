@@ -64,16 +64,21 @@
       <div class="form-group text-center">
       <p>施設写真</p>
       <% if resource.image? %>
-        <%= image_tag resource.image.thumb.url %>
         <p>現在の画像</p>
-      <% else %>
-        <%= image_tag "/assets/download.jpg", size: '200x200' %>
-        <p>デフォルト</p>
-      <% end %>
+        <%= image_tag resource.image.thumb.url %>
         施設写真　➡︎　
         <%= f.label :image, for: "file-input", class: "fa fa-file-picture-o" do %>
-        <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', id: "file-input", style: "display: none;" %>
+          <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', id: "file-input", style: "display: none;" %>
         <% end %>
+        <p><%= f.check_box :remove_image %>⬅︎画像を削除する場合はチェック</p>
+      <% else %>
+        <p>デフォルト</p>
+        <%= image_tag "/assets/download.jpg", size: '200x200' %>
+        施設写真　➡︎　
+        <%= f.label :image, for: "file-input", class: "fa fa-file-picture-o" do %>
+          <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', id: "file-input", style: "display: none;" %>
+        <% end %>
+      <% end %>
       </div>
 
       <div class="form-group">

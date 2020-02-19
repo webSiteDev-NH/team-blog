@@ -40,6 +40,9 @@ class PlayersController < ApplicationController
   end
 
   def update
+    # プロフィール画像削除
+    @player.remove_image!
+    
     if @player.update(profile_params)
       redirect_to @player, notice:"編集できました"
     else
@@ -63,7 +66,7 @@ class PlayersController < ApplicationController
   end
 
   def profile_params
-    params.require(:player).permit(:name, :number, :position, :birthday, :height, :weight, :goals, :play_style, :image).merge(team_id: current_team.id)
+    params.require(:player).permit(:name, :number, :position, :birthday, :height, :weight, :goals, :play_style, :image, :remove_image).merge(team_id: current_team.id)
   end
 
   def return_top_page

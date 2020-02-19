@@ -20,9 +20,11 @@ class Facilities::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+    # 施設写真削除
+    resource.remove_image!
+  end
 
   # DELETE /resource
   # def destroy
@@ -41,7 +43,7 @@ class Facilities::RegistrationsController < Devise::RegistrationsController
   protected
 
   def facility_params
-    params.require(:facility).permit.(:facility_name, :address, :phone_number, :start_time, :holiday_start_time, :holiday_close_time, :close_time, :access, :courts, :url, :facebook, :twitter, :instagram, :image, :latitude, :longitude)
+    params.require(:facility).permit.(:facility_name, :address, :phone_number, :start_time, :holiday_start_time, :holiday_close_time, :close_time, :access, :courts, :url, :facebook, :twitter, :instagram, :image, :remove_image, :latitude, :longitude)
   end
   
   # If you have extra params to permit, append them to the sanitizer.
@@ -51,7 +53,7 @@ class Facilities::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:facility_name, :address, :phone_number, :start_time, :holiday_start_time, :holiday_close_time, :close_time, :access, :courts, :url, :facebook, :twitter, :instagram, :image, :latitude, :longitude])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:facility_name, :address, :phone_number, :start_time, :holiday_start_time, :holiday_close_time, :close_time, :access, :courts, :url, :facebook, :twitter, :instagram, :image, :remove_image, :latitude, :longitude])
   end
 
   # The path used after sign up.
