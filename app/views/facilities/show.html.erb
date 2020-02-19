@@ -52,16 +52,23 @@
     </table>
   </div>
 
-  <div id="map" style='width: 400px; height: 400px;'></div>
-  <script type="text/javascript">
-    handler = Gmaps.build('Google');
-    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-      markers = handler.addMarkers(<%= raw @hash.to_json %>);
-      handler.bounds.extendWith(markers);
-      handler.fitMapToBounds();
-      handler.getMap().setZoom(15);
-  });
-  </script>
+  <% if @facility.latitude == nil %>
+    <div class="text-center">
+      <p style="font-size: 20px;">マップが表示出来ません</p>
+      <%= image_tag "/assets/images.jpg", size: '350x350' %>
+    </div>
+  <% else %>
+    <div id="map" style='width: 400px; height: 400px;'></div>
+    <script type="text/javascript">
+      handler = Gmaps.build('Google');
+      handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        handler.getMap().setZoom(15);
+      });
+    </script>
+  <% end %>
 
   <%# facebook,insta,twitter %>
   <% if @facility.facebook? && @facility.instagram? && @facility.twitter? %>

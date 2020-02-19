@@ -7,7 +7,7 @@
     </div>
 
     <div class="form-group">
-      <%= f.collection_select(:facility_id, @facility, :id, :facility_name, {prompt: "会場を選択してください"}) %><br>
+      <%= f.collection_select(:facility_id, @facility, :id, :facility_name,{prompt: "会場を選択してください"}) %><br>
       ↓会場の選択肢に該当する施設がなければ入力してください
       <%= f.text_field :venue, class:"form-control" %>
     </div>
@@ -52,12 +52,46 @@
       <%= f.label :video, class:"fas fa-video" do %>
         <%= f.file_field :video, accept: 'video/*', style:"display: none;" %>
       <% end %><br>
+
       <% if post.video? %>
         <p>投稿中の動画</p>
-        <%= video_tag post.video.url, controls: true, height: 200, weght: 200 %>
+        <%= video_tag post.video.url, id: :video_prev, controls: true, height: 200, weght: 200 %>
         <p><%= f.check_box :remove_video %>⬅︎動画を削除する場合はチェック</p>
+        <script type="text/javascript">
+          $(function() {
+          function readURL(input) {
+            if (input.files && input.files[0]) {
+              var reader = new FileReader();
+              reader.onload = function (e) {
+                $('#video_prev').attr('src', e.target.result);
+              }
+              reader.readAsDataURL(input.files[0]);
+            }
+          }
+          $("#post_video").change(function(){
+            readURL(this);
+          });
+          });
+        </script>
       <% else %>
-        動画の投稿はありません
+        <P>動画の投稿はありません</p>
+        <%= video_tag "/assets/11199027_MotionElements_animated-play-video-led-icon-loop-modules-for-edit-with-alpha_preview.mp4", id: :video_prev, controls: true, height: 200, weght: 200 %>
+        <script type="text/javascript">
+          $(function() {
+          function readURL(input) {
+            if (input.files && input.files[0]) {
+              var reader = new FileReader();
+              reader.onload = function (e) {
+                $('#video_prev').attr('src', e.target.result);
+              }
+              reader.readAsDataURL(input.files[0]);
+            }
+          }
+          $("#post_video").change(function(){
+            readURL(this);
+          });
+          });
+        </script>
       <% end %>
     </div>
 

@@ -11,6 +11,21 @@
 
   <div class="post col-md-10 col-md-offset-1" >
     <p class="date">試合日：<%= @post.game_date.strftime('%Y/%m/%d')%></p>
+
+    <% if @post.facility_id? && @post.venue? %>
+        <p class="venue">会場：<%= @post.venue %></p>
+    <% elsif @post.facility_id? %>
+      <p class="venue">会場：
+        <%= link_to facility_path(@post.facility) do %>
+          <%= @post.facility.facility_name %>
+        <% end%>
+      </p>
+    <% elsif post.venue? %>
+      <p class="venue">会場：<%= post.venue %></p>
+    <% else %>
+      <p class="venue">会場：不明</p>
+    <% end %>
+
     <p class="opponent text-center">vs <%= @post.opponent %></p>
     <div class="result text-right">
     <%# 勝敗によっての色分け %>
