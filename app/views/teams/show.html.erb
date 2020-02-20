@@ -68,8 +68,26 @@
     </div>
       
     <div class="team-posts">＜結果一覧＞</div>
+    <div class="post-color-info col-md-10 col-md-offset-1">
+      <div class=post-color-info__league>
+      </div>
+      <span class="post-color-info--category">&middot;&middot;&middot;リーグ戦</span>
+      <div class=post-color-info__cup>
+      </div>
+      <span class="post-color-info--category">&middot;&middot;&middot;カップ戦</span>
+      <div class=post-color-info__practice>
+      </div>
+      <span class="post-color-info--category">&middot;&middot;&middot;練習試合</span>
+    </div>
     <% @posts.each do |post| %>
-      <div class="posts col-md-10 col-md-offset-1">
+      <% if post.category_id == 1 %>
+        <div class="posts--league col-md-10 col-md-offset-1">
+      <% elsif post.category_id == 2%>
+        <div class="posts--cup col-md-10 col-md-offset-1">
+      <% else %>
+        <div class="posts--practice col-md-10 col-md-offset-1">
+      <% end %>
+
         <p class="date">試合日：<%= post.game_date.strftime('%Y/%m/%d')%></p>
 
         <% if post.facility_id? && post.venue? %>
@@ -88,9 +106,14 @@
 
         <p class="categories"><%= post.category.name%> <%= link_to "詳細/動画・ハイライト", post_path(post), class:"btn btn-info"%></p>
         <p class="opponent text-center"><%= post.team.team_name %>　vs　<%= post.opponent %></p>
-        <div class="result text-right">
-          <%= post.result %>
-          <%= post.goal%> - <%= post.allow%>
+        <div class="result-show text-right">
+          <% if post.result == "Win" %>
+            <span class="win"><%= post.result %></span> <%= post.goal %> - <%= post.allow %>
+          <% elsif post.result == "Lose" %>
+            <span class="lose"><%= post.result %></span> <%= post.goal %> - <%= post.allow %>
+          <% else%>
+            <span class="drow"><%= post.result %></span> <%= post.goal %> - <%= post.allow %>
+          <% end %>
         </div>
       </div>
     <% end %>

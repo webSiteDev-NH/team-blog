@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
 
   def index
-    @posts = Post.order(game_date: :desc).includes(:team).page(params[:page]).per(5)
+    @posts = Post.order(game_date: :desc).order(created_at: :desc).includes(:team).page(params[:page]).per(5)
   end
 
   def search

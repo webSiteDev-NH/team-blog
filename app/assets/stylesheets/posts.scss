@@ -2,36 +2,59 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.pagination>li>a {
-  border: none;
-  color: #696969; 
-}
-
-/* 表示しているページ番号のデザイン */
-.pagination>.active>a { 
-  background: #93c9ff; 
-  border-radius: 15px;
-}
-
-/*ホバー時のデザイン*/
-.pagination>li>a:hover {
-  border-radius: 15px; 
+.post-color-info{
+  width: 100%;
+  margin: 30px auto;
+  display: flex;
+  justify-content: center;
+  &__league{
+    height: 35px;
+    width: 80px;
+    margin-right: 10px;
+    background-color: seashell;
+    border: solid 2px  brown;
+  }
+  &__cup{
+    height: 35px;
+    width: 80px;
+    margin-right: 10px;
+    background-color: lightgoldenrodyellow;
+    border: solid 2px sandybrown;
+  }
+  &__practice{
+    height: 35px;
+    width: 80px;
+    margin-right: 10px;
+    background-color: aliceblue;
+    border: solid 2px steelblue;
+  }
+  &--category{
+    font-size: x-large;
+    margin-right: 40px;
+  }
 }
 
 .posts{
-  background-color: mintcream;
-  border: solid 3px;
-  margin-bottom: 40px;
+  &--league
+  {
+    background-color: seashell;
+    border: solid 3px brown;
+    margin-bottom: 30px;
+  }
+  &--cup{
+    background-color: lightgoldenrodyellow;
+    border: solid 3px sandybrown;
+    margin-bottom: 30px;
+  }
+  &--practice{
+    background-color: aliceblue;
+    border: solid 3px steelblue;
+    margin-bottom: 30px;
+  }
 }
 
 .contributor{
   font-size: 20px;
-}
-
-.post{
-  background-color: mintcream;
-  border: solid 3px;
-  margin-bottom: 10px;
 }
 
 .date{
@@ -42,13 +65,51 @@
   font-size: 20px;
 }
 
+.categories{
+  font-size: x-large;
+  display: flex;
+  justify-content: space-between;
+}
+
 .opponent{
-  font-size: xx-large;
+  width: 100%;
+  font-size: x-large;
+  display: flex;
+  justify-content: center;
+  &__main-team{
+    width: 40%;
+    text-align: right;
+  }
+  &__vs{
+    width: 20%;
+  }
+  &__team{
+    width: 40%;
+    text-align: left;
+  }
 }
 
 .result{
+  width: 100%;
   font-size: xx-large;
   padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  &__goal{
+    width: 40%;
+    text-align: right;
+  }
+  &__var{
+    width: 20%;
+  }
+  &__allow{
+    width: 40%;
+    text-align: left;
+  }
+}
+
+.result-show{
+  font-size: xx-large;
 }
 
 .scorer{
@@ -58,6 +119,10 @@
 
 .commentary{
   font-size: large;
+  &--text{
+    margin-left: 20px;
+    font-size: larger;
+  }
 }
 
 .post-form{
@@ -75,14 +140,17 @@
 
 .win{
   color:red;
+  margin-right: 15px;
 }
 
 .lose{
-  color: blue;
+  color: dodgerblue;
+  margin-right: 15px;
 }
 
 .drow{
   color: gray;
+  margin-right: 15px;
 }
 
 .search-msg{
@@ -100,5 +168,27 @@
 }
 
 .goals_list{
-  margin: 5px 0;
+  margin: 10px 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 280px;
+}
+
+.post_show_ply-name{
+  line-height: 2.5;
+}
+
+// ページネーション設定
+.pagination>li>a {
+  border: none;
+  color: #696969; 
+}
+/* 表示しているページ番号のデザイン */
+.pagination>.active>a { 
+  background: #93c9ff; 
+  border-radius: 15px;
+}
+/*ホバー時のデザイン*/
+.pagination>li>a:hover {
+  border-radius: 15px; 
 }

@@ -1,9 +1,16 @@
-<div class="posts-list">
   <% posts.each do |post| %>
+
       <div class=" contributor col-md-10 col-md-offset-1">
         投稿チーム：<%= post.team.team_name%>
       </div>
-      <div class="posts col-md-10 col-md-offset-1">
+      <%# カテゴリー別で背景色を変える %>
+      <% if post.category_id == 1 %>
+        <div class="posts--league col-md-10 col-md-offset-1">
+      <% elsif post.category_id == 2%>
+        <div class="posts--cup col-md-10 col-md-offset-1">
+      <% else %>
+        <div class="posts--practice col-md-10 col-md-offset-1">
+      <% end %>
         <p class="date">試合日：<%= post.game_date.strftime('%Y/%m/%d')%></p>
 
         <% if post.facility_id? && post.venue? %>
@@ -19,13 +26,20 @@
         <% end %>
 
         <p class="categories"><%= post.category.name%> <%= link_to "詳細/動画・ハイライト", post_path(post), class:"btn btn-info"%></p>
-        <p class="opponent text-center"><%= post.team.team_name %>　vs　<%= post.opponent %></p>
-        <div class="result text-center">
-          <%= post.goal%>　-　<%= post.allow%></span>
+
+        <div class="opponent text-center">
+          <p class="opponent__main-team"><%= post.team.team_name %></p>
+          <p class="opponent__vs">vs</p>
+          <P class="opponent__team"><%= post.opponent %></p>
         </div>
+        <div class="result text-center">
+          <p class="result__goal"><%= post.goal%></p>
+          <p class="result__var">-</p>
+          <P class="result__allow"><%= post.allow%></p>
+        </div>
+
       </div>
   <% end %>
   <div class="col-md-10 col-md-offset-1">
     <%= paginate(posts)%>
   </div>
-</div>

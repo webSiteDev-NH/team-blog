@@ -9,7 +9,14 @@
     <% end %>
   </div>
 
-  <div class="post col-md-10 col-md-offset-1" >
+  <% if @post.category_id == 1 %>
+    <div class="posts--league col-md-10 col-md-offset-1">
+  <% elsif @post.category_id == 2%>
+    <div class="posts--cup col-md-10 col-md-offset-1">
+  <% else %>
+    <div class="posts--practice col-md-10 col-md-offset-1">
+  <% end %>
+  
     <p class="date">試合日：<%= @post.game_date.strftime('%Y/%m/%d')%></p>
 
     <% if @post.facility_id? && @post.venue? %>
@@ -27,7 +34,7 @@
     <% end %>
 
     <p class="opponent text-center">vs <%= @post.opponent %></p>
-    <div class="result text-right">
+    <div class="result-show text-right">
     <%# 勝敗によっての色分け %>
       <% if @post.result == "Win" %>
         <span class="win"><%= @post.result %></span> <%= @post.goal %> - <%= @post.allow %>
@@ -56,20 +63,22 @@
       <% end %>
       <% @players.each do |player|%>
         <%= form_with model: player, class: :goals_list do |f| %>
-          <span class="mgl-10">
+          <div class="post_show_ply-name">
             <%= player.number %>
             <%= player.position %>
             <%= player.name %>
+          </div>
+          <p>
             <%= f.number_field :goals, max: 200, min: 0 %>点
             <span class="mgl-10"><%= f.submit "更新", class: "btn btn-info" %></span>
-          </span>
+          </p>
         <% end %>
       <% end %>
     <% end %>
 
     <p class="commentary">
       ＜戦評＞
-      <span class="mgl-20"><%= simple_format @post.commentary %></span>
+      <div class="commentary--text"><%= simple_format @post.commentary %></div>
     </p>
   </div>
 
