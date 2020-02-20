@@ -2,26 +2,76 @@
   <%= form_for player, html: { class: 'post-form'} do |f| %>
 
     <div class="form-group">
-      名前<%= f.text_field :name, class:"form-control"%>
+      名前<%= f.text_field :name, class:"form-control", placeholder: "名字と名前の間にスペースを入れてください"%>
     </div>
 
     <div class="form-group text-center">
       <p>プロフィール写真</p>
       <% if player.image? %>
-        <%= image_tag player.image.thumb.url %>
-        <p>現在の画像</p>
-        画像選択　➡︎　
+        <div class="img-frame">
+          <div class="img-frame--now">
+            <%= image_tag player.image.thumb.url %>
+            <p>現在の画像</p>
+          </div>
+          <div class="img-frame--preview">
+            <%= image_tag "/assets/istockphoto-1184655874-1024x1024.jpg", id: :ply_prev, size: '200x195' %>
+            <script type="text/javascript">
+              $(function() {
+              function readURL(input) {
+                if (input.files && input.files[0]) {
+                  var reader = new FileReader();
+                  reader.onload = function (e) {
+                    $('#ply_prev').attr('src', e.target.result);
+                  }
+                  reader.readAsDataURL(input.files[0]);
+                }
+              }
+              $("#file-input").change(function(){
+                readURL(this);
+              });
+              });
+            </script>
+            <p>プレビュー</p>
+          </div>
+        </div>
+        画像選択&emsp;➡︎&emsp;
         <%= f.label :image, for: "file-input", class: "fa fa-file-picture-o" do %>
           <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', id: "file-input", style: "display: none;" %>
         <% end %>
         <p><%= f.check_box :remove_image %>⬅︎画像を削除する場合はチェック</p>
+
       <% else %>
-        <%= image_tag "/assets/download.png", size: '200x200' %>
-        <p>デフォルト</p>
-        画像選択　➡︎　
+        <div class="img-frame">
+          <div class="img-frame--default">
+            <%= image_tag "/assets/download.png", size: '200x200' %>
+            <p>デフォルト</p>
+          </div>
+          <div class="img-frame--preview">
+            <%= image_tag "/assets/istockphoto-1184655874-1024x1024.jpg", id: :ply_prev, size: '200x195' %>
+            <script type="text/javascript">
+              $(function() {
+              function readURL(input) {
+                if (input.files && input.files[0]) {
+                  var reader = new FileReader();
+                  reader.onload = function (e) {
+                    $('#ply_prev').attr('src', e.target.result);
+                  }
+                  reader.readAsDataURL(input.files[0]);
+                }
+              }
+              $("#file-input").change(function(){
+                readURL(this);
+              });
+              });
+            </script>
+            <p>プレビュー</p>
+          </div>
+        </div>
+        画像選択&emsp;➡︎&emsp;
         <%= f.label :image, for: "file-input", class: "fa fa-file-picture-o" do %>
           <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', id: "file-input", style: "display: none;" %>
         <% end %>
+        
       <% end %>
     </div>
 
@@ -30,7 +80,8 @@
     </div>
       
     <div class="form-group">
-      身長：<%= f.number_field :height, min:100, max: 250 %>cm
+      <p>&darr;&nbsp;半角英数字で入力してください</p>
+      身長：<%= f.number_field :height, min:130, max: 250 %>cm
       <span class="mgl-20">体重：<%= f.number_field :weight, min:30, max:150 %>kg</span>
     </div>
 

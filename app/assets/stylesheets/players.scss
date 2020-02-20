@@ -24,6 +24,14 @@
   font-weight: bold;
 }
 
+.img-frame{
+  display: flex;
+  justify-content: space-between;
+  &--preview{
+    margin-top: 4px;
+  }
+}
+
 .goals-form_btn{
   margin-left: 60px;
 }
