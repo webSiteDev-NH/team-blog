@@ -8,7 +8,7 @@
           <th class="icon-gold"><i class="fas fa-crown">1位</i></th>
           <td class="first-ply">
             <%= link_to player_path(@first_scorer) do%>
-              <%= @first_scorer.name%>（<%= @first_scorer.team.team_name %>）
+              <%= @first_scorer.name%><br>（<%= @first_scorer.team.team_name %>）
             <% end %>
           </td>
           <td class="first-goals"><%= @first_scorer.goals %>点</td>

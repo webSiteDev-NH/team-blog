@@ -7,6 +7,14 @@
 @import 'players';
 @import 'facilities';
 
+.navbar-default .navbar-brand {
+  color: #777;
+  font-family: serif;
+  &--title{
+    font-size: xx-large;
+  }
+}
+
 body{
   background-image: image-url('3e2aa33ca73f180999d8b41dd74775f7_w.jpg');
   background-size: cover;

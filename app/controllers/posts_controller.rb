@@ -39,10 +39,9 @@ class PostsController < ApplicationController
   end
 
   def update
-    # 動画・ハイライト削除
-    @post.remove_video!
-
     if @post.update(post_params)
+      # 動画・ハイライト削除
+      @post.remove_video!
       redirect_to @post, notice: '更新できました'
     else
       render :edit, alert: '更新できませんでした'

@@ -27,7 +27,9 @@
 .img-frame{
   display: flex;
   justify-content: space-between;
-  &--preview{
+  &--preview-true{
+  }
+  &--preview-false{
     margin-top: 4px;
   }
 }
@@ -51,6 +53,7 @@
 }
 .first-ply{
   font-size: xx-large;
+  width: 73%;
 }
 .first-goals{
   font-size: xx-large;

@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
   
   def index
-    @teams = Team.all
+    @teams = Team.all.order(:team_name)
   end
 
   def show

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
+  <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
         <span class="icon-bar"></span>
@@ -8,11 +8,11 @@
       </button>
 
       <% if team_signed_in? %>
-        <a class="navbar-brand" href="/">チーム名：<%= current_team.team_name %></a>
+        <span class="navbar-brand navbar-brand--title">チーム名：<%= current_team.team_name %></span>
       <% elsif facility_signed_in? %>
-        <a class="navbar-brand" href="/">施設名：<%= current_facility.facility_name %></a>
+        <span class="navbar-brand navbar-brand--title">施設名：<%= current_facility.facility_name %></span>
       <% else %>
-        <a class="navbar-brand" href="/">Futsulブログ</a>
+        <span class="navbar-brand navbar-brand--title">Futsul&nbsp;Blog</span>
       <% end %>
     </div>
 

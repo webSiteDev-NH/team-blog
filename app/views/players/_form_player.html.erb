@@ -13,8 +13,8 @@
             <%= image_tag player.image.thumb.url %>
             <p>現在の画像</p>
           </div>
-          <div class="img-frame--preview">
-            <%= image_tag "/assets/istockphoto-1184655874-1024x1024.jpg", id: :ply_prev, size: '200x195' %>
+          <div class="img-frame--preview-true">
+            <%= image_tag "/assets/istockphoto-1184655874-1024x1024.jpg", id: :ply_prev, size: '200x250' %>
             <script type="text/javascript">
               $(function() {
               function readURL(input) {
@@ -43,11 +43,11 @@
       <% else %>
         <div class="img-frame">
           <div class="img-frame--default">
-            <%= image_tag "/assets/download.png", size: '200x200' %>
+            <%= image_tag "/assets/download.png", size: '200x260' %>
             <p>デフォルト</p>
           </div>
-          <div class="img-frame--preview">
-            <%= image_tag "/assets/istockphoto-1184655874-1024x1024.jpg", id: :ply_prev, size: '200x195' %>
+          <div class="img-frame--preview-false">
+            <%= image_tag "/assets/istockphoto-1184655874-1024x1024.jpg", id: :ply_prev, size: '200x250' %>
             <script type="text/javascript">
               $(function() {
               function readURL(input) {

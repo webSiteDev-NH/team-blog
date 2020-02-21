@@ -40,10 +40,9 @@ class PlayersController < ApplicationController
   end
 
   def update
-    # プロフィール画像削除
-    @player.remove_image!
-    
     if @player.update(profile_params)
+      # プロフィール画像削除
+      @player.remove_image!
       redirect_to @player, notice:"編集できました"
     else
       render :edit, aleat:"編集できませんでした"
