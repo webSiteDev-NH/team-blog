@@ -5,7 +5,7 @@ class Post < ApplicationRecord
   validates :allow, presence: true
 
   belongs_to :team
-  belongs_to :facility
+  belongs_to :facility, optional: true
   belongs_to :category
 
   def self.search(search)

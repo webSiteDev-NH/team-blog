@@ -27,8 +27,8 @@
           <%= @post.facility.facility_name %>
         <% end%>
       </p>
-    <% elsif post.venue? %>
-      <p class="venue">会場：<%= post.venue %></p>
+    <% elsif @post.venue? %>
+      <p class="venue">会場：<%= @post.venue %></p>
     <% else %>
       <p class="venue">会場：不明</p>
     <% end %>
@@ -87,7 +87,6 @@
       <%= link_to "戻る", :back, class: "btn btn-default"%>
       <%= link_to "編集", edit_post_path, class: "btn btn-warning", style: "margin-left: 5px;"%>
       <%= link_to "削除", post_path, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class:"btn btn-danger"%>
-      <%= link_to "マイチーム", team_path(@post.team), class: "btn btn-info"%>
     <% else %>
       <%= link_to "戻る", :back, class: "btn btn-default"%>
       <%= link_to "#{@post.team.team_name}情報", team_path(@post.team), class: "btn btn-info"%>

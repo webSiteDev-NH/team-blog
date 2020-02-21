@@ -7,13 +7,19 @@
   <div class="post-color-info col-md-10 col-md-offset-1">
     <div class=post-color-info__league>
     </div>
-    <span class="post-color-info--category">&middot;&middot;&middot;リーグ戦</span>
+    <span class="post-color-info--category">&middot;&middot;&middot;
+      <span class="post-color-info--category--league">リーグ戦</span>
+    </span>
     <div class=post-color-info__cup>
     </div>
-    <span class="post-color-info--category">&middot;&middot;&middot;カップ戦</span>
+    <span class="post-color-info--category">&middot;&middot;&middot;
+      <span class="post-color-info--category--cup">カップ戦</span>
+    </span>
     <div class=post-color-info__practice>
     </div>
-    <span class="post-color-info--category">&middot;&middot;&middot;練習試合</span>
+    <span class="post-color-info--category">&middot;&middot;&middot;
+      <span class="post-color-info--category--practice">練習試合</span>
+    </span>
   </div>
   
   <%= render partial: 'posts', locals: { posts: @posts} %>

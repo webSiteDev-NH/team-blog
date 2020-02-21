@@ -31,6 +31,17 @@
   &--category{
     font-size: x-large;
     margin-right: 40px;
+    font-style: oblique;
+    font-weight: bolder;
+    &--league{
+      -webkit-text-stroke: 1px brown;
+    }
+    &--cup{
+      -webkit-text-stroke: 1px sandybrown;
+    }
+    &--practice{
+      -webkit-text-stroke: 1px steelblue;
+    }
   }
 }
 
@@ -142,12 +153,10 @@
   color:red;
   margin-right: 15px;
 }
-
 .lose{
   color: dodgerblue;
   margin-right: 15px;
 }
-
 .drow{
   color: gray;
   margin-right: 15px;
@@ -162,7 +171,6 @@
   font-size: 30px;
   color: antiquewhite;
 }
-
 .video-title{
   color: antiquewhite;
 }
@@ -171,9 +179,8 @@
   margin: 10px 10px;
   display: flex;
   justify-content: space-between;
-  width: 280px;
+  width: 45%;
 }
-
 .post_show_ply-name{
   line-height: 2.5;
 }

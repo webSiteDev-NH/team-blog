@@ -23,7 +23,7 @@
         <%  @check_confirmation_datails.each do |d| %>
           <div class="text-left check-details">
             <%= d.game_date.strftime('%Y/%m/%d') %>
-            　vs　<%= d.opponent %><br>
+            &emsp;vs&ensp;<%= d.opponent %><br>
           </div>
         <% end %>
       </div>
@@ -68,17 +68,25 @@
     </div>
       
     <div class="team-posts">＜結果一覧＞</div>
+    
     <div class="post-color-info col-md-10 col-md-offset-1">
       <div class=post-color-info__league>
       </div>
-      <span class="post-color-info--category">&middot;&middot;&middot;リーグ戦</span>
+      <span class="post-color-info--category">&middot;&middot;&middot;
+        <span class="post-color-info--category--league">リーグ戦</span>
+      </span>
       <div class=post-color-info__cup>
       </div>
-      <span class="post-color-info--category">&middot;&middot;&middot;カップ戦</span>
+      <span class="post-color-info--category">&middot;&middot;&middot;
+        <span class="post-color-info--category--cup">カップ戦</span>
+      </span>
       <div class=post-color-info__practice>
       </div>
-      <span class="post-color-info--category">&middot;&middot;&middot;練習試合</span>
+      <span class="post-color-info--category">&middot;&middot;&middot;
+        <span class="post-color-info--category--practice">練習試合</span>
+      </span>
     </div>
+
     <% @posts.each do |post| %>
       <% if post.category_id == 1 %>
         <div class="posts--league col-md-10 col-md-offset-1">
