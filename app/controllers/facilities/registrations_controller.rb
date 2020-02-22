@@ -43,7 +43,7 @@ class Facilities::RegistrationsController < Devise::RegistrationsController
   protected
 
   def facility_params
-    params.require(:facility).permit.(:facility_name, :address, :phone_number, :start_time, :holiday_start_time, :holiday_close_time, :close_time, :access, :courts, :url, :facebook, :twitter, :instagram, :image, :remove_image, :latitude, :longitude)
+    params.require(:facility).permit(:facility_name, :address, :phone_number, :start_time, :holiday_start_time, :holiday_close_time, :close_time, :access, :courts, :url, :facebook, :twitter, :instagram, :image, :remove_image, :latitude, :longitude)
   end
   
   # If you have extra params to permit, append them to the sanitizer.

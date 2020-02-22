@@ -8,14 +8,15 @@
     </div>
   <% end %>
 
+  <div class="facility-img text-center">
+    <% if @facility.image? %>
+      <%= image_tag @facility.image.thumb.url %>
+    <% else %>
+      <%= image_tag "/assets/download.jpg", size: '450x280' %>
+    <% end %>
+  </div>
+
   <div class="facility_left--box col-md-5 col-md-offset-1 ">
-    <div class="facility-img text-center">
-      <% if @facility.image? %>
-        <%= image_tag @facility.image.thumb.url %>
-      <% else %>
-        <%= image_tag "/assets/download.jpg", size: '350x280' %>
-      <% end %>
-    </div>
 
     <table class="table-bordered table-config">
       <tbody>

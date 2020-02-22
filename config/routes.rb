@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  # get 'facilities/index'
-  # get 'facilities/show'
   devise_for :facilities, controllers:{
     sessions: 'facilities/sessions',
     passwords: 'facilities/passwords',

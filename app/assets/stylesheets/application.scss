@@ -28,8 +28,8 @@ li{
 }
 
 .row{
-  margin-right: 50px;
-  margin-left: 50px;
+  margin-right: 0 50px;
+
 }
 
 h1{
@@ -41,34 +41,35 @@ h1{
   font-weight: bold;
 }
 
+// margin
+// top
+.mgt-10{
+  margin-top: 20px;
+}
 .mgt-20{
   margin-top: 20px;
 }
-
-.mgl-20{
-  margin-left: 20px;
-}
-
+// left
 .mgl-10{
   margin-left: 10px;
 }
-
+.mgl-20{
+  margin-left: 20px;
+}
 .mgl-40{
   margin-left: 40px;
 }
-
 .mgl-90{
   margin-left: 90px;
 }
-
+// right
 .mgr-10{
   margin-right: 10px;
 }
-
 .mgr-40{
   margin-right: 40px;
 }
-
+// bottom
 .mgb-20{
   margin-bottom: 20px;
 }

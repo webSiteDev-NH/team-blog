@@ -6,7 +6,7 @@ class PlayersController < ApplicationController
 
   def index
     # 得点ランキング
-    @players = Player.all.includes(:team).order(goals: :desc)
+    @players = Player.all.includes(:team).order(goals: :desc).order(name: :desc)
     # １位
     @first_scorer = @players.first
     # ２位
@@ -50,7 +50,7 @@ class PlayersController < ApplicationController
   end
 
   def destroy
-    # @team = current_team.id
+    @team = current_team.id
     if @player.destroy
       redirect_to affiliation_team_path(@team), notice:"削除できました"
     else

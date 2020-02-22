@@ -78,18 +78,18 @@
         <%= video_tag "/assets/11199027_MotionElements_animated-play-video-led-icon-loop-modules-for-edit-with-alpha_preview.mp4", id: :video_prev, controls: true, height: 200, weght: 200 %>
         <script type="text/javascript">
           $(function() {
-          function readURL(input) {
-            if (input.files && input.files[0]) {
-              var reader = new FileReader();
-              reader.onload = function (e) {
-                $('#video_prev').attr('src', e.target.result);
+            function readURL(input) {
+              if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                  $('#video_prev').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
               }
-              reader.readAsDataURL(input.files[0]);
             }
-          }
-          $("#post_video").change(function(){
-            readURL(this);
-          });
+            $("#post_video").change(function(){
+              readURL(this);
+            });
           });
         </script>
       <% end %>
