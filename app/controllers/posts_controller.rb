@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
 
   def index
-    @posts = Post.order(game_date: :desc).order(created_at: :desc).includes(:team).page(params[:page]).per(5)
+    @posts = Post.order(game_date: :desc).includes(:team).page(params[:page]).per(5)
   end
 
   def search
@@ -52,7 +52,7 @@ class PostsController < ApplicationController
     if @post.destroy
       redirect_to root_path, notice: '削除しました'
     else
-      redirect_to root_path, notice: '削除できませんでした'
+      redirect_to root_path, alert: '削除できませんでした'
     end
   end
 
@@ -71,7 +71,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:opponent,:result,:goal,:allow,:scorer,:commentary, :game_date, :category_id, :facility_id, :venue, :video, :remove_video, :goals_check).merge(team_id: current_team.id)
+    params.require(:post).permit( :opponent, :result, :goal, :allow, :scorer, :commentary, :game_date, :category_id, :facility_id, :venue, :video, :remove_video, :goals_check).merge(team_id: current_team.id)
   end
 
   def return_top_page
@@ -79,6 +79,3 @@ class PostsController < ApplicationController
   end
 
 end
-
-#データベース(カラム名)
-#opponent（対戦相手）,result（結果）,goal（得点）,allow（失点）,scorer（得点者）,commentary（戦評）,game_date(試合日)
