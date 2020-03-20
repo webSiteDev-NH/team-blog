@@ -8,7 +8,7 @@ class Team < ApplicationRecord
   validates :team_name, presence: true
 
   has_many :posts, dependent: :destroy
-  has_many :players
+  has_many :players, dependent: :destroy
 
   def goals_confirmation
     @total_goal = Post.where(team_id: @team).sum(:goal)
