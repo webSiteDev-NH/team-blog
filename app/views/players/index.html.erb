@@ -1,52 +1,61 @@
 <div class="row text-center">
   <h1>得点ランキング</h1>
-  <div class="col-md-8 col-md-offset-2">
-    <table class="table table-hover">
-      <tbody>
-        <%# 1位 %>
-        <tr class="warning">
-          <th class="icon-gold"><i class="fas fa-crown">1位</i></th>
-          <td class="first-ply">
-            <%= link_to player_path(@first_scorer) do%>
-              <%= @first_scorer.name%><br>（<%= @first_scorer.team.team_name %>）
-            <% end %>
-          </td>
-          <td class="first-goals"><%= @first_scorer.goals %>点</td>
-        </tr>
-        <%# 2位 %>
-        <tr class="active">
-          <th class="icon-silver"><i class="fas fa-crown">２位</i></th>
-          <td class="second-ply">
-            <%= link_to player_path(@second_scorer) do%>
-              <%= @second_scorer.name%>（<%= @second_scorer.team.team_name %>）
-            <% end %>
-          </td>
-          <td class="second-goals"><%= @second_scorer.goals %>点</td>
-        </tr>
-        <%# 3位 %>
-        <tr class="danger">
-          <th class="icon-bronze"><i class="fas fa-crown">３位</i></th>
-          <td class="third-ply">
-            <%= link_to player_path(@third_scorer) do%>
-              <%= @third_scorer.name%>（<%= @third_scorer.team.team_name %>）
-            <% end %>
-          </td>
-          <td class="third-goals"><%= @third_scorer.goals %>点</td>
-        </tr>
-        <%# 4位〜10位 %>
-        <% @low_scorer.each.with_index(4) do |low, num|%>
-          <tr class="low-list">
-            <th class="low-rank"><%= num %>位</th>
-            <td>
-              <%= link_to low do%>
-              <%= low.name %>（<%= low.team.team_name%>）
+  <%# .present? : @player（選手）が空もしくは存在しない場合はfalse=表示しない %>
+  <% if @players.present? %>
+    <div class="col-md-8 col-md-offset-2">
+      <table class="table table-hover">
+        <tbody>
+          <%# 1位 %>
+          <tr class="warning">
+            <th class="icon-gold"><i class="fas fa-crown">1位</i></th>
+            <td class="first-ply">
+              <%= link_to player_path(@first_scorer) do%>
+                <%= @first_scorer.name%><br>（<%= @first_scorer.team.team_name %>）
               <% end %>
             </td>
-            <td><%= low.goals %>点</td>
+            <td class="first-goals"><%= @first_scorer.goals %>点</td>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+          <%# 2位 %>
+          <% if @second_scorer.present? %>
+            <tr class="active">
+              <th class="icon-silver"><i class="fas fa-crown">２位</i></th>
+              <td class="second-ply">
+                <%= link_to player_path(@second_scorer) do%>
+                  <%= @second_scorer.name%>（<%= @second_scorer.team.team_name %>）
+                <% end %>
+              </td>
+              <td class="second-goals"><%= @second_scorer.goals %>点</td>
+            </tr>
+            <% end %>
+          <%# 3位 %>
+          <% if @third_scorer.present? %>
+            <tr class="danger">
+              <th class="icon-bronze"><i class="fas fa-crown">３位</i></th>
+              <td class="third-ply">
+                <%= link_to player_path(@third_scorer) do%>
+                  <%= @third_scorer.name%>（<%= @third_scorer.team.team_name %>）
+                <% end %>
+              </td>
+              <td class="third-goals"><%= @third_scorer.goals %>点</td>
+            </tr>
+          <% end %>
+          <%# 4位〜10位 %>
+          <% if @low_scorer.present? %>
+            <% @low_scorer.each.with_index(4) do |low, num|%>
+              <tr class="low-list">
+                <th class="low-rank"><%= num %>位</th>
+                <td>
+                  <%= link_to low do%>
+                  <%= low.name %>（<%= low.team.team_name%>）
+                  <% end %>
+                </td>
+                <td><%= low.goals %>点</td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
 </div>
 
