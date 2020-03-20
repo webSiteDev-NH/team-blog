@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_18_225014) do
+ActiveRecord::Schema.define(version: 2020_02_18_022259) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -26,22 +26,22 @@ ActiveRecord::Schema.define(version: 2020_02_18_225014) do
     t.string "phone_number"
     t.time "start_time"
     t.time "close_time"
+    t.time "holiday_start_time"
+    t.time "holiday_close_time"
     t.text "access"
     t.integer "courts"
     t.string "image"
     t.string "url"
+    t.string "facebook"
+    t.string "instagram"
+    t.string "twitter"
+    t.float "latitude"
+    t.float "longitude"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.time "holiday_start_time"
-    t.time "holiday_close_time"
-    t.string "facebook"
-    t.string "twitter"
-    t.string "instagram"
-    t.float "latitude"
-    t.float "longitude"
     t.index ["email"], name: "index_facilities_on_email", unique: true
     t.index ["reset_password_token"], name: "index_facilities_on_reset_password_token", unique: true
   end
@@ -63,20 +63,20 @@ ActiveRecord::Schema.define(version: 2020_02_18_225014) do
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "venue"
     t.string "opponent", null: false
     t.string "result", default: "", null: false
-    t.integer "goal"
-    t.integer "allow"
+    t.integer "goal", default: 0
+    t.integer "allow", default: 0
     t.text "scorer"
     t.text "commentary"
     t.date "game_date"
+    t.string "video"
+    t.boolean "goals_check"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "team_id"
-    t.string "venue"
     t.bigint "category_id"
-    t.string "video"
-    t.boolean "goals_check"
     t.bigint "facility_id"
     t.index ["category_id"], name: "index_posts_on_category_id"
     t.index ["facility_id"], name: "index_posts_on_facility_id"

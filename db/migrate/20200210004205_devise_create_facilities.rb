@@ -8,13 +8,20 @@ class DeviseCreateFacilities < ActiveRecord::Migration[5.2]
       t.string :encrypted_password, null: false, default: ""
       t.string :facility_name,      null: false
       t.string :address
-      t.integer :phone_number
-      t.integer :start_time
-      t.integer :close_time
+      t.string :phone_number
+      t.time :start_time
+      t.time :close_time
+      t.time :holiday_start_time
+      t.time :holiday_close_time
       t.text :access
       t.integer :courts
       t.string :image
       t.string :url
+      t.string :facebook
+      t.string :instagram
+      t.string :twitter
+      t.float :latitude
+      t.float :longitude
 
       ## Recoverable
       t.string   :reset_password_token
