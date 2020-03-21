@@ -13,7 +13,7 @@
     </div>
 
     <div class="form-group">
-      <%= f.collection_select(:category_id, @category, :id, :name, {prompt: "カテゴリーを選択してください"}) %>
+      <%= f.select :category, Post.categories.keys, {prompt:  "カテゴリーを選択してください"} %>
     </div>
 
     <div class="form-group">

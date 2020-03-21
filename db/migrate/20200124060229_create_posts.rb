@@ -2,6 +2,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
   def change
     create_table :posts do |t|
       t.string :venue
+      t.integer :category
       t.string :opponent, null: false
       t.string :result, default: "", null: false
       t.integer :goal, default: 0

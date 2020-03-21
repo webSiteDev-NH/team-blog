@@ -4,9 +4,9 @@
         投稿チーム：<%= post.team.team_name%>
       </div>
       <%# カテゴリー別で背景色を変える %>
-      <% if post.category_id == 1 %>
+      <% if post.category == "リーグ戦" %>
         <div class="posts--league col-md-10 col-md-offset-1">
-      <% elsif post.category_id == 2%>
+      <% elsif post.category == "カップ戦" %>
         <div class="posts--cup col-md-10 col-md-offset-1">
       <% else %>
         <div class="posts--practice col-md-10 col-md-offset-1">
@@ -25,7 +25,7 @@
           <p class="venue">会場：不明</p>
         <% end %>
 
-        <p class="categories"><%= post.category.name%> <%= link_to "詳細/動画・ハイライト", post_path(post), class:"btn btn-info"%></p>
+        <p class="categories"><%= post.category %> <%= link_to "詳細/動画・ハイライト", post_path(post), class:"btn btn-info"%></p>
 
         <div class="opponent text-center">
           <p class="opponent__main-team"><%= post.team.team_name %></p>

@@ -6,7 +6,10 @@ class Post < ApplicationRecord
 
   belongs_to :team
   belongs_to :facility, optional: true
-  belongs_to :category
+
+  enum category: {
+    リーグ戦:1,カップ戦:2,練習試合:3
+  }
 
   def self.search(search)
     if search

@@ -9,9 +9,9 @@
     <% end %>
   </div>
 
-  <% if @post.category_id == 1 %>
+  <% if @post.category == "リーグ戦" %>
     <div class="posts--league col-md-10 col-md-offset-1">
-  <% elsif @post.category_id == 2%>
+  <% elsif @post.category == "カップ戦" %>
     <div class="posts--cup col-md-10 col-md-offset-1">
   <% else %>
     <div class="posts--practice col-md-10 col-md-offset-1">
@@ -33,7 +33,7 @@
       <p class="venue">会場：不明</p>
     <% end %>
 
-    <p class="categories"><%= @post.category.name%></p>
+    <p class="categories"><%= @post.category%></p>
 
     <p class="opponent text-center">vs <%= @post.opponent %></p>
     <div class="result-show text-right">

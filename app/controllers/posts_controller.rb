@@ -2,7 +2,6 @@ class PostsController < ApplicationController
 
   before_action :find_post, only: [:show, :edit, :update, :destroy]
   before_action :select_facility, only: [:new, :create, :edit, :update]
-  before_action :select_category, only: [:new, :create, :edit, :update]
   before_action :return_top_page, except: [:index, :show, :search]
 
 
@@ -66,12 +65,8 @@ class PostsController < ApplicationController
     @facility = Facility.all
   end
 
-  def select_category
-    @category = Category.all
-  end
-
   def post_params
-    params.require(:post).permit( :opponent, :result, :goal, :allow, :scorer, :commentary, :game_date, :category_id, :facility_id, :venue, :video, :remove_video, :goals_check).merge(team_id: current_team.id)
+    params.require(:post).permit(:category, :opponent, :result, :goal, :allow, :scorer, :commentary, :game_date, :facility_id, :venue, :video, :remove_video, :goals_check).merge(team_id: current_team.id)
   end
 
   def return_top_page
